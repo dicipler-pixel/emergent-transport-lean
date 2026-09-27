@@ -82,6 +82,36 @@ theorem undaggered_sign (k : n) (E : Matrix n n ℝ) (hE : Eᵀ = -E) :
   rw [hE]
   simp only [mul_neg, neg_mul, trace_neg, neg_neg]
 
+/-- **Theorem 7 as a commutator norm.** For an orthogonal projector `Π` and skew `E`, the
+commutator `[E, Π]` is symmetric and `‖[E,Π]‖²_F = Tr([E,Π][E,Π]ᵀ) = 2 Tr(Π Eᵀ (1−Π) E)`. So the
+correct form of the correspondence is `½‖[E,Π]‖²_F = Tr(ΠEᵀ(1−Π)E)`: the factor ½ belongs to the
+squared commutator norm, the same `½‖[·,·]‖²` shape as the connection energy of the block
+transport operator (`⅛‖[H,H†]‖² = ½‖[D,A]‖²`), with `Π` in the role of the obstruction field
+and `E` in the role of the transport. -/
+theorem half_commutator_norm (P E : Matrix n n ℝ) (hP : Pᵀ = P) (hPP : P * P = P)
+    (hE : Eᵀ = -E) :
+    trace ((E * P - P * E) * (E * P - P * E)ᵀ) = 2 * trace (P * Eᵀ * (1 - P) * E) := by
+  have hC : (E * P - P * E)ᵀ = E * P - P * E := by
+    rw [transpose_sub, transpose_mul, transpose_mul, hP, hE]
+    noncomm_ring
+  have hexp : (E * P - P * E) * (E * P - P * E) = E * P * E * P - E * P * E - P * E * E * P
+      + P * E * P * E := by
+    calc (E * P - P * E) * (E * P - P * E)
+        = E * P * E * P - E * (P * P) * E - P * E * E * P + P * E * P * E := by noncomm_ring
+      _ = _ := by rw [hPP]
+  have hrhs : P * Eᵀ * (1 - P) * E = -(P * E * E) + P * E * P * E := by
+    rw [hE]; noncomm_ring
+  have h1 : trace (E * P * E * P) = trace (P * E * P * E) := by
+    rw [trace_mul_comm (E * P * E) P]; simp only [mul_assoc]
+  have h2 : trace (E * P * E) = trace (P * E * E) := by
+    rw [mul_assoc E P E, trace_mul_comm E (P * E)]
+  have h3 : trace (P * E * E * P) = trace (P * E * E) := by
+    rw [trace_mul_comm (P * E * E) P]
+    simp only [← mul_assoc, hPP]
+  rw [hC, hexp, hrhs]
+  simp only [trace_sub, trace_add, trace_neg]
+  linarith [h1, h2, h3]
+
 /-! ## Proposition 3: gauge invariance -/
 
 /-- **Proposition 3 / Theorem 13.** For orthogonal `U`,

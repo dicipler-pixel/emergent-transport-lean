@@ -1,1 +1,1 @@
-{"modules":[{"module":"EmergentTransport.Basic","path":"EmergentTransport/Basic.lean"}],"expected_theorems":10,"expected_false_controls":3,"root_imports":["EmergentTransport.Basic"]}
+{"modules": [{"module": "EmergentTransport.Basic", "path": "EmergentTransport/Basic.lean"}], "expected_theorems": 11, "expected_false_controls": 3, "root_imports": ["EmergentTransport.Basic"]}
