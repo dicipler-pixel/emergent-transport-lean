@@ -46,12 +46,11 @@ theorem commutator_offdiag {R : Type*} [Ring R] (P X : R) (hP : P * P = P) :
   constructor
   · have : P * (X * P - P * X) * P = P * X * (P * P) - (P * P) * X * P := by noncomm_ring
     rw [this, hP, sub_self]
-  · have : (1 - P) * (X * P - P * X) * (1 - P) =
-        (X * P - P * X) - P * (X * P) + P * (P * X) - X * P * P + P * X * P + P * X * P * P
-          - P * P * X * P := by noncomm_ring
-    rw [this]
-    simp only [← mul_assoc, hP]
-    noncomm_ring
+  · have hPQ : P * (1 - P) = 0 := by rw [mul_sub, mul_one, hP, sub_self]
+    have hQP : (1 - P) * P = 0 := by rw [sub_mul, one_mul, hP, sub_self]
+    calc (1 - P) * (X * P - P * X) * (1 - P)
+        = (1 - P) * X * (P * (1 - P)) - ((1 - P) * P) * X * (1 - P) := by noncomm_ring
+      _ = 0 := by rw [hPQ, hQP]; noncomm_ring
 
 /-! ## Theorem 7, corrected: the daggered projector–metric correspondence -/
 
@@ -70,10 +69,10 @@ total off-diagonal transition weight into channel `n`. -/
 theorem metric_correspondence (k : n) (E : Matrix n n ℝ) :
     trace (proj k * Eᵀ * (1 - proj k) * E) = ∑ m ∈ Finset.univ.erase k, E m k ^ 2 := by
   rw [mul_assoc, mul_assoc, trace_proj_mul, ← mul_assoc, mul_sub, mul_one, sub_mul,
-    sub_apply, proj_mul_apply]
+    Matrix.sub_apply, proj_mul_apply, mul_apply]
+  simp only [transpose_apply]
   rw [← Finset.add_sum_erase _ _ (Finset.mem_univ k)]
-  simp only [mul_apply, transpose_apply, sq]
-  rw [← Finset.add_sum_erase _ _ (Finset.mem_univ k)]
+  simp only [sq]
   ring
 
 /-- **Theorem 7, the sign.** For skew `E`, the undaggered trace `Tr(Πₙ E (1−Πₙ) E)` is the
