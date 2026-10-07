@@ -4,7 +4,7 @@ Directional Transport Geometry of Admissible Channels — the emergent-transport
 projector–metric correspondence in its corrected (daggered) form.
 
 * Proposition 2 (first-order cancellation): for symmetric `R` and skew `E`, `Tr(RE) = 0`, so the
-  first variation of the regularised trace-log vanishes at the normal baseline.
+  first variation of the regularised trace-log vanishes at a self-adjoint baseline.
 * Lemma 6 / Corollary 4.2: for a projector `Π`, the commutator `[X, Π]` is off-diagonal:
   `Π[X,Π]Π = 0` and `(1−Π)[X,Π](1−Π) = 0`.
 * Theorem 7, corrected: for the rank-one projector `Πₙ` onto the `n`-th basis vector,
@@ -28,7 +28,8 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- **Proposition 2.** A symmetric matrix times a skew matrix is traceless: `Tr(RE) = 0`. Applied
 to `R = R₀(z−η)²` (symmetric for self-adjoint `H₀`), the first variation of `Tr log(H + ηI)`
-vanishes pointwise on the contour. -/
+vanishes pointwise on the contour. The theorem is stated for real matrices; on the contour `R`
+is complex, and that case is not formalized here. -/
 theorem trace_sym_skew (R E : Matrix n n ℝ) (hR : Rᵀ = R) (hE : Eᵀ = -E) : trace (R * E) = 0 := by
   have h : trace (R * E) = -trace (R * E) := by
     calc trace (R * E) = trace ((R * E)ᵀ) := (trace_transpose _).symm

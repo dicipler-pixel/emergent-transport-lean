@@ -19,15 +19,18 @@ Jeromie Beasley
 ## The idea in one line
 
 Transport lives on projectors, not vectors. A commutator with a projector is always
-off-diagonal, the first variation of the trace-log ledger cancels at a normal baseline, the
-projector–metric correspondence holds in its daggered form, and the overlap between two
-subspaces is a squared norm, `Σ cos²θᵢ`.
+off-diagonal, the first variation of the trace-log ledger cancels at a self-adjoint baseline,
+the projector–metric correspondence holds in its daggered form, and the overlap between two
+subspaces is a squared norm, `‖Π₂Π₁‖²_F` (for two lines, `cos²θ`).
 
 ## What is proved
 
+Paper labels follow the 29 June 2026 edition named in [`PROVENANCE.md`](PROVENANCE.md); the
+version behind the DOI may number them differently.
+
 | Paper | Result | Theorem |
 | :--- | :--- | :--- |
-| Prop. 2 | A symmetric matrix times a skew matrix is traceless, so the first variation of `Tr log(H + ηI)` vanishes at the normal baseline | `trace_sym_skew` |
+| Prop. 2 | A symmetric matrix times a skew matrix is traceless, so the first variation of `Tr log(H + ηI)` vanishes at a self-adjoint (symmetric) baseline | `trace_sym_skew` |
 | Lemma 6, Cor. 4.2 | For a projector `Π`, `Π[X,Π]Π = 0` and `(1−Π)[X,Π](1−Π) = 0` | `commutator_offdiag` |
 | Theorem 7 | `Tr(Πₙ Eᵀ (1−Πₙ) E) = Σ_{m≠n} E_{mn}²`; for skew `E` the undaggered trace is its negative | `trace_proj_mul`, `proj_mul_apply`, `metric_correspondence`, `undaggered_sign` |
 | Theorem 7 | For any orthogonal projector and skew `E`: `½‖[E,Π]‖²_F = Tr(ΠEᵀ(1−Π)E)`, the same `½‖commutator‖²` shape as the connection energy of [*Non-normality is connection energy*](https://github.com/dicipler-pixel/-connection-energy-lean) | `half_commutator_norm` |

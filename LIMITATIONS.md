@@ -9,5 +9,8 @@ Lean proves exactly the statements written, under exactly the hypotheses written
   Theorem 4 (Kakeya directional support sets), Theorem 9 (Seeley–DeWitt compatibility),
   Lemma 10, the gluing Theorem 15 and the Kato-type continuity statements (Prop. 4, Thm. 17)
   are not formalized.
-* Proposition 2 is proved as the pointwise identity `Tr(RE) = 0`. The contour-integral
-  derivative is not formalized.
+* Proposition 2 is proved as the pointwise identity `Tr(RE) = 0` for real matrices with `R`
+  symmetric, that is, at a self-adjoint baseline. The complex contour version and the
+  contour-integral derivative are not formalized.
+* Theorem 14 is proved as `Tr(Π₁Π₂) = ‖Π₂Π₁‖²_F ≥ 0` and, for rank one, `(u·v)²`. The
+  principal-angle form `Σ cos²θᵢ` for higher-rank projectors is not formalized.
