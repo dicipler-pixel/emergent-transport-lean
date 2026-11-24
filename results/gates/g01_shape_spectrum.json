@@ -1,0 +1,157 @@
+{
+  "assertions": [
+    {
+      "label": "(a) sigma1^2+sigma2^2 = 3  (max deviation, 49 shapes)",
+      "ok": true,
+      "tol": 1e-08,
+      "value": 2.228671469595156e-09
+    },
+    {
+      "label": "(c) det M at the equilateral shape = 9/4",
+      "ok": true,
+      "tol": 1e-08,
+      "value": 2.2499999996879145
+    },
+    {
+      "label": "(c) squared gap at the equilateral shape = 0",
+      "ok": true,
+      "tol": 1e-06,
+      "value": 4.2146848510894035e-08
+    },
+    {
+      "label": "(b) det M on the collinear equator (psi=0)",
+      "ok": true,
+      "tol": 1e-08,
+      "value": 0.0
+    },
+    {
+      "label": "(c) no shape beats 9/4",
+      "ok": true,
+      "tol": null,
+      "value": 2.2499527885779025
+    },
+    {
+      "label": "(d) squared gap closes linearly, slope 3, isotropic",
+      "ok": true,
+      "tol": 0.001,
+      "value": {
+        "slopes": {
+          "+0.000": 3.0000208482012414,
+          "+0.785": 3.0000474932503387,
+          "+1.571": 2.999997163514483,
+          "-1.047": 3.0000386115936006
+        },
+        "spread": 5.032973585583633e-05
+      }
+    },
+    {
+      "label": "(d) det has a quadratic maximum at the equilateral shape",
+      "ok": true,
+      "tol": 0.01,
+      "value": -4.49900302434969
+    },
+    {
+      "label": "(e) eigen-line holonomy around the equilateral shape, loop radius 0.01",
+      "ok": true,
+      "tol": 1e-06,
+      "value": -0.9999999999999994
+    },
+    {
+      "label": "(e) eigen-line holonomy around the equilateral shape, loop radius 0.003",
+      "ok": true,
+      "tol": 1e-06,
+      "value": -1.0
+    },
+    {
+      "label": "(f) sum |grad d_ij|^2 = N(N-2), N=3",
+      "ok": true,
+      "tol": 2e-06,
+      "value": 2.9999999998688662
+    },
+    {
+      "label": "(f) sum |grad d_ij|^2 = N(N-2), N=4",
+      "ok": true,
+      "tol": 2e-06,
+      "value": 7.999999999939277
+    },
+    {
+      "label": "(f) sum |grad d_ij|^2 = N(N-2), N=5",
+      "ok": true,
+      "tol": 2e-06,
+      "value": 15.000000000027258
+    },
+    {
+      "label": "(f) sum |grad d_ij|^2 = N(N-2), N=6",
+      "ok": true,
+      "tol": 2e-06,
+      "value": 23.99999999960987
+    },
+    {
+      "label": "(f) sum |grad d_ij|^2 = N(N-2), N=7",
+      "ok": true,
+      "tol": 2e-06,
+      "value": 35.0000000000544
+    },
+    {
+      "label": "(g) per-pair identity, N=3, unequal masses",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 2.220446049250313e-16
+    },
+    {
+      "label": "(g) per-pair identity, N=4, unequal masses",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 2.220446049250313e-16
+    },
+    {
+      "label": "(g) per-pair identity, N=5, unequal masses",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 8.881784197001252e-16
+    },
+    {
+      "label": "(g) per-pair identity, N=6, unequal masses",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 8.881784197001252e-16
+    },
+    {
+      "label": "(g) per-pair identity, N=8, unequal masses",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 3.3306690738754696e-16
+    },
+    {
+      "label": "(h) det M = 12 A^2/(d12^2 d13^2 d23^2)  (Heron form, 81 shapes)",
+      "ok": true,
+      "tol": 1e-07,
+      "value": 1.4530066039242229e-09
+    }
+  ],
+  "claim": "shape->distance differential: sum rule, two degenerate loci, isotropic cone, holonomy -1, and the N(N-2) total",
+  "gate": "g01_shape_spectrum",
+  "measurements": {
+    "cone_slopes": {
+      "+0.000": 3.0000208482012414,
+      "+0.785": 3.0000474932503387,
+      "+1.571": 2.999997163514483,
+      "-1.047": 3.0000386115936006
+    },
+    "det_closed_form_max_deviation": 1.4530066039242229e-09,
+    "equilateral_singular_values": [
+      1.2247448713491196,
+      1.2247448713491196
+    ],
+    "sum_rule_max_deviation": 2.228671469595156e-09,
+    "total_capacity_by_N": {
+      "3": 2.9999999998688662,
+      "4": 7.999999999939277,
+      "5": 15.000000000027258,
+      "6": 23.99999999960987,
+      "7": 35.0000000000544
+    }
+  },
+  "passed": true,
+  "source_sha256": "1c574d3a01e7f342d027f3f0a9d77832ce14bf61dae0073c1311014bb23572a6"
+}

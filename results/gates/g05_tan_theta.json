@@ -1,0 +1,51 @@
+{
+  "assertions": [
+    {
+      "label": "(a) ||tan Theta|| <= delta/d over random off-diagonal V",
+      "ok": true,
+      "tol": 1e-09,
+      "value": 0.9873108975326551
+    },
+    {
+      "label": "(a) ||P-P'|| <= sin(arctan(delta/sqrt(d^2+delta^2)))",
+      "ok": true,
+      "tol": 1e-09,
+      "value": 0.9917786601252568
+    },
+    {
+      "label": "(b) the 2x2 off-diagonal model approaches the bound",
+      "ok": true,
+      "tol": null,
+      "value": 0.9999999975021849
+    },
+    {
+      "label": "(c) with a diagonal part the tan bound FAILS somewhere",
+      "ok": true,
+      "tol": 0.0,
+      "value": {
+        "p_q": [
+          -0.45,
+          0.45
+        ],
+        "ratio": 1.1218276681821566
+      }
+    }
+  ],
+  "claim": "off-diagonal tan Theta bound: holds, is approached, and needs the hypothesis",
+  "gate": "g05_tan_theta",
+  "measurements": {
+    "diagonal_violation_at": [
+      -0.45,
+      0.45
+    ],
+    "diagonal_violation_ratio": 1.1218276681821566,
+    "sharpness_ratios": [
+      0.9999750012499241,
+      0.9999997500001431,
+      0.9999999975021849
+    ],
+    "trials": 300
+  },
+  "passed": true,
+  "source_sha256": "1c574d3a01e7f342d027f3f0a9d77832ce14bf61dae0073c1311014bb23572a6"
+}

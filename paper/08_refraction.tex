@@ -1,0 +1,49 @@
+\section{Refraction is conformal geometry, not a new law}\label{sec:refraction}
+
+The corpus states a refraction law $\rho_1\sin^2\theta_1=\rho_2\sin^2\theta_2$ across a
+``rigidity interface''. The law is true, and it is Snell's law for a conformal metric; saying so
+precisely is the whole content of this section, and it changes the epistemic status of the claim
+from a transport law to a consequence of a modelling choice.
+
+\begin{theorem}[Snell from a conformal factor]\label{thm:snell}
+Let $g$ be a Riemannian metric on a surface, $R>0$ a function that is $\C^1$ on each side of a
+$\C^1$ curve $\shape$ and jumps across it, and $\hat g=R\,g$. Let $\gamma$ be a geodesic of
+$\hat g$ crossing $\shape$ transversally at $p$. Then
+\begin{equation}\label{eq:snell}
+   n_1\sin\theta_1=n_2\sin\theta_2,\qquad\text{equivalently}\qquad
+   R_1\sin^2\theta_1=R_2\sin^2\theta_2,
+\end{equation}
+where $n:=\sqrt R$ and $\theta$ is the angle between $\gamma$ and the normal to $\shape$
+measured in the metric $g$.
+\T\ (first variation of the $\hat g$-length, with the matching condition at $\shape$).
+\end{theorem}
+
+\begin{proof}
+A geodesic of $\hat g$ is a critical point of $\hat g$-length against variations supported away
+from the endpoints. Taking a variation localised near $p$ and letting its support shrink gives
+continuity across $\shape$ of the tangential component of the $\hat g$-unit tangent $u$: for every
+vector $\tau$ tangent to $\shape$, $\ip{u}{\tau}_{\hat g}$ is continuous. Let $\tau$ be the
+$g$-unit tangent and write $\abs{u}_g=R^{-1/2}$ because $\ip{u}{u}_{\hat g}=R\ip{u}{u}_g=1$.
+Then $\ip{u}{\tau}_{\hat g}=R\ip{u}{\tau}_g=R\abs{u}_g\sin\theta=\sqrt R\,\sin\theta$, so
+$\sqrt{R_1}\sin\theta_1=\sqrt{R_2}\sin\theta_2$; squaring gives \eqref{eq:snell}.
+\end{proof}
+
+\begin{remark}[What is a theorem and what is a hypothesis]\label{rem:snell-grade}
+Theorem~\ref{thm:snell} is \T. It is not a statement about any physical transport: it is a
+statement about geodesics of a conformal metric. To apply it to a transport one must assert that
+admissible paths extremise $\int R\sin^2\theta\,\df s$, or equivalently that the effective metric
+is conformal to a reference one with conformal factor $R$. That assertion is a modelling choice,
+and it is \Hh\ wherever the corpus makes it. With $\rho$ in the role of $R$ one recovers the
+corpus's law and the index $n=\sqrt\rho$; with $\rho=2/(3-\sqrt{9-4\det})$ of
+Remark~\ref{rem:rigidity} one gets a specific, falsifiable prediction for the shape sphere,
+namely an index that diverges like $1/A$ as collinearity is approached, so that transport across
+a near-collinear interface is totally reflected to leading order.
+\end{remark}
+
+\begin{remark}[Why the qualification matters]
+A ``refraction law'' sounds like a discovered regularity of a system. \eqref{eq:snell} is instead
+what one gets for free once one has decided that the medium is conformal with factor $R$ --- the
+same content as Fermat's principle, re-expressed. The empirical question is never whether the
+law holds, but whether the medium is conformal and with which $R$. That is the question a gate can
+answer, and it is the form in which the corpus's interface-refraction protocol should be stated.
+\end{remark}

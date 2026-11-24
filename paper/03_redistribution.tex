@@ -1,0 +1,110 @@
+\section{Redistribution: what moves between blocks}\label{sec:redistribution}
+
+Fix an orthogonal projector $\PP$ and write $\QQ=1-\PP$. Every operator decomposes into four
+blocks, and the two off-diagonal ones are the only ones that can carry anything between the
+admissible subspace and its complement.
+
+\begin{definition}[Redistribution operator]\label{def:F}
+For $\Omega\in\operatorname{End}(H)$,
+\begin{equation}\label{eq:F}
+   \Fr(\Omega,\PP):=\PP\Omega\QQ+\QQ\Omega\PP .
+\end{equation}
+\end{definition}
+
+\begin{lemma}[Block decomposition]\label{lem:blocks}
+For every $\Omega$, $\ \Omega=\PP\Omega\PP+\PP\Omega\QQ+\QQ\Omega\PP+\QQ\Omega\QQ$, and the two
+off-diagonal blocks of $\Fr(\Omega,\PP)$ are the off-diagonal blocks of $\Omega$:
+\[
+   \PP\,\Fr(\Omega,\PP)\,\QQ=\PP\Omega\QQ,\qquad
+   \QQ\,\Fr(\Omega,\PP)\,\PP=\QQ\Omega\PP .
+\]
+\T\ Kernel-checked: \lean{block\_decomposition}, \lean{redistribution\_block12},
+\lean{redistribution\_block21} (\lean{EmergentTransport/GapsAndTotals.lean}).
+\end{lemma}
+
+\begin{proof}
+$\PP\Omega\PP+\PP\Omega\QQ=\PP\Omega(\PP+\QQ)=\PP\Omega$ and likewise for $\QQ$; adding gives
+$\Omega$. For the blocks, $\PP\Fr\QQ=\PP(\PP\Omega\QQ+\QQ\Omega\PP)\QQ=\PP\Omega\QQ\,\QQ+\PP\QQ\,\Omega\PP\QQ=\PP\Omega\QQ$,
+using $\PP\QQ=0$ and $\QQ^2=\QQ$. The other block is the same computation with $\PP$ and $\QQ$
+interchanged.
+\end{proof}
+
+So $\Fr$ is exactly the off-diagonal part, and $0=\Fr$ is exactly the statement that $\Omega$ is
+block-diagonal.
+
+\begin{theorem}[Redistribution is traceless]\label{thm:traceless}
+For every $\Omega$ and every idempotent $\PP$ (orthogonality is not needed here),
+$\Tr\Fr(\Omega,\PP)=0$.
+\T\ Kernel-checked: \lean{redistribution\_traceless}.
+\end{theorem}
+
+\begin{proof}
+$\Tr(\PP\Omega\QQ)=\Tr(\Omega\QQ\PP)=0$ by cyclicity and $\QQ\PP=0$; likewise
+$\Tr(\QQ\Omega\PP)=0$.
+\end{proof}
+
+\begin{theorem}[Compatibility]\label{thm:compat}
+$\Fr(\Omega,\PP)=0$ if and only if $\Omega\PP=\PP\Omega$. Neither self-adjointness of $\Omega$
+nor orthogonality of $\PP$ is used.
+\T\ Kernel-checked: \lean{redistribution\_zero\_iff\_commute}.
+\end{theorem}
+
+\begin{proof}
+($\Leftarrow$) If $\Omega\PP=\PP\Omega$ then $\PP\Omega\QQ=\PP(\Omega\QQ)=\PP(\QQ\Omega)=\PP\QQ\Omega=0$
+and $\QQ\Omega\PP=(\QQ\Omega)\PP=(\Omega\QQ)\PP=\Omega(\QQ\PP)=0$.
+($\Rightarrow$) If $\Fr=0$ then by Lemma~\ref{lem:blocks} both $\PP\Omega\QQ$ and $\QQ\Omega\PP$
+vanish, so $\Omega=\PP\Omega\PP+\QQ\Omega\QQ$ and therefore
+$\Omega\PP=\PP\Omega\PP=\PP\Omega$.
+\end{proof}
+
+The next result is the quantitative one: the \emph{size} of the movement between blocks equals
+the size of the failure to commute.
+
+\begin{theorem}[Norm identity]\label{thm:norm}
+Let $\Omega$ be self-adjoint and $\PP$ an orthogonal projector. Then
+\begin{equation}\label{eq:norm}
+   \norm{\Fr(\Omega,\PP)}_F^2 \;=\; 2\,\norm{\PP\Omega\QQ}_F^2 \;=\; \norm{[\Omega,\PP]}_F^2 ,
+   \qquad\text{and}\qquad \tfrac12\norm{[\Omega,\PP]}_F^2=\norm{\PP\Omega\QQ}_F^2 .
+\end{equation}
+Moreover $[\Omega,\PP]$ is skew: $[\Omega,\PP]^*=-[\Omega,\PP]$.
+\T\ Kernel-checked: \lean{redistribution\_norm}, \lean{commutator\_skew},
+\lean{half\_commutator\_norm}.
+\end{theorem}
+
+\begin{proof}
+Put $A=\PP\Omega\QQ$ and $B=\QQ\Omega\PP$. Since $\Omega^*=\Omega$ and $\PP^*=\PP$,
+$B=A^*$. Since $\QQ\PP=0$, $A^2=\PP\Omega\QQ\PP\Omega\QQ=0$, and likewise $B^2=0$.
+Then $\Fr=A+B$, $\Fr^*=\Fr$, and
+\[
+   \norm{\Fr}_F^2=\Tr\bigl((A+A^*)^2\bigr)=2\norm{A}_F^2+2\operatorname{Re}\Tr(A^2)=2\norm{A}_F^2 .
+\]
+For the commutator, $[\Omega,\PP]=\Omega\PP-\PP\Omega=(\QQ\Omega\PP+\PP\Omega\PP)-(\PP\Omega\PP+\PP\Omega\QQ)=B-A=A^*-A$,
+so $\norm{[\Omega,\PP]}_F^2=\Tr\bigl((A^*-A)(A-A^*)\bigr)=2\norm{A}_F^2-2\operatorname{Re}\Tr(A^2)=2\norm{A}_F^2$.
+Skewness is immediate from $\Omega^*=\Omega$, $\PP^*=\PP$.
+\end{proof}
+
+\begin{remark}[A correction, recorded]\label{rem:corrected-chain}
+An earlier formulation of this section chained the equalities as
+$\norm{\Fr}^2=2\norm{\PP\Omega\QQ}^2=\tfrac12\norm{[\Omega,\PP]}^2$. That is false: the last
+two terms differ by a factor $4$. The counterexample is $\PP=\operatorname{diag}(1,0)$,
+$\Omega=\sigma_1$, for which $\norm{\Fr}_F^2=2$, $\norm{\PP\Omega\QQ}_F^2=1$ and
+$\norm{[\Omega,\PP]}_F^2=2$, so $\tfrac12\norm{[\Omega,\PP]}_F^2=1\neq 2$. The correct chain is
+\eqref{eq:norm}: $\Fr$ and the commutator have \emph{the same} squared norm, and the half-factor
+belongs to the second identity, where it converts a squared commutator into a squared metric
+block. This is the form proved in the kernel and the form used in \S\ref{sec:geometry}.
+\end{remark}
+
+\begin{example}[Non-normal $\Omega$: traceless but not balanced]\label{ex:nonnormal}
+The first conclusion survives non-normality and the second does not. Take
+$\Omega=\left(\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\right)$, $\PP=\operatorname{diag}(1,0)$. Then
+$\Fr(\Omega,\PP)=\left(\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\right)$, so $\Tr\Fr=0$ and
+$\norm{\Fr}_F^2=1=\norm{\PP\Omega\QQ}_F^2$; the factor $2$ of \eqref{eq:norm} is absent because
+$\Omega$ is not self-adjoint ($\Omega\Omega^*\neq\Omega^*\Omega$). \V\ \lean{FalseControls/norm\_needs\_selfadjoint.lean}, which the verification requires
+to \emph{fail}.
+\end{example}
+
+\begin{remark}[What the section says, in one sentence]
+A transport can move structure across an interface exactly to the extent that the structural
+operator fails to commute with the projector, and the amount moved is the whole of that
+failure --- there is no third thing.
+\end{remark}

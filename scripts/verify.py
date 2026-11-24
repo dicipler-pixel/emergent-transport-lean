@@ -57,6 +57,15 @@ INFRA_FAILURE = re.compile(
 
 
 LAST_OUTPUT = ""
+# `--direct` runs the plain `lean` binary against the pinned LEAN_PATH instead of
+# `lake env lean`.  Use it where the Mathlib checkout is not writable (as on the
+# Open Math OS VM, where /opt/mathlib belongs to root); CI keeps using lake.
+DIRECT = "--direct" in sys.argv
+BUILD = ROOT / ".lake" / "build" / "lib" / "lean"
+
+
+def lean_cmd(args: list[str]) -> list[str]:
+    return (["lean"] if DIRECT else ["lake", "env", "lean"]) + args
 
 
 def run(argv: list[str]) -> subprocess.CompletedProcess:
@@ -79,8 +88,24 @@ def theorems_in(path: pathlib.Path) -> list[str]:
     return [f"{spaces[0]}.{name}" for name in THEOREM_RE.findall(text)]
 
 
+def build_oleans() -> None:
+    """In --direct mode the modules must be compiled before the audit can import them."""
+    import os
+    os.environ["LEAN_PATH"] = f"{BUILD}:{os.environ.get('LEAN_PATH', '')}"
+    for module, rel in MODULES:
+        target = BUILD / (rel.replace(".lean", ".olean"))
+        target.parent.mkdir(parents=True, exist_ok=True)
+        proc = subprocess.run(["lean", "-o", str(target), rel], cwd=ROOT,
+                              capture_output=True, text=True)
+        if proc.returncode != 0:
+            print(proc.stdout + proc.stderr)
+            raise SystemExit(f"could not build {module} with lean -o")
+
+
 def main() -> int:
     OUT.mkdir(exist_ok=True)
+    if DIRECT:
+        build_oleans()
     report: dict = {"lean": run(["lean", "--version"]).stdout.strip(), "modules": {}}
 
     # Inventory and hashes.
@@ -106,7 +131,7 @@ def main() -> int:
     lines = [f"import {m}" for m in ROOT_IMPORTS] + [""]
     lines += [f"#print axioms {name}" for name in names]
     audit.write_text("\n".join(lines) + "\n")
-    proc = run(["lake", "env", "lean", str(audit.relative_to(ROOT))])
+    proc = run(lean_cmd([str(audit.relative_to(ROOT))]))
     log = proc.stdout + proc.stderr
     (OUT / "axioms.log").write_text(log)
     if proc.returncode != 0:
@@ -132,7 +157,7 @@ def main() -> int:
     # False controls.
     controls = {}
     for path in sorted((ROOT / "FalseControls").glob("*.lean")):
-        proc = run(["lake", "env", "lean", str(path.relative_to(ROOT))])
+        proc = run(lean_cmd([str(path.relative_to(ROOT))]))
         text = proc.stdout + proc.stderr
         (OUT / f"{path.stem}.log").write_text(text)
         if proc.returncode == 0:

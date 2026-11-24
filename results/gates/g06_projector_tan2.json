@@ -1,0 +1,142 @@
+{
+  "assertions": [
+    {
+      "label": "(a) |tan 2Theta| <= 2 delta/d over random rank-one problems",
+      "ok": true,
+      "tol": 1e-09,
+      "value": 0.9999593760781464
+    },
+    {
+      "label": "(a) tan Theta <= (sqrt(d^2+4delta^2)-d)/(2delta) <= delta/d",
+      "ok": true,
+      "tol": 1e-09,
+      "value": 0.9999809236313217
+    },
+    {
+      "label": "(b) tan Theta = delta/(d/2+sqrt(d^2/4+delta^2)) at delta/d=0.05",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 0.04987562112089298
+    },
+    {
+      "label": "(b) |tan 2Theta| = 2 delta/d exactly at delta/d=0.05",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 0.10000000000000546
+    },
+    {
+      "label": "(b) tan Theta = delta/(d/2+sqrt(d^2/4+delta^2)) at delta/d=0.2",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 0.1925824035672514
+    },
+    {
+      "label": "(b) |tan 2Theta| = 2 delta/d exactly at delta/d=0.2",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 0.3999999999999986
+    },
+    {
+      "label": "(b) tan Theta = delta/(d/2+sqrt(d^2/4+delta^2)) at delta/d=0.5",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 0.41421356237309515
+    },
+    {
+      "label": "(b) |tan 2Theta| = 2 delta/d exactly at delta/d=0.5",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 1.0000000000000002
+    },
+    {
+      "label": "(b) tan Theta = delta/(d/2+sqrt(d^2/4+delta^2)) at delta/d=0.9",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 0.5884033489985556
+    },
+    {
+      "label": "(b) |tan 2Theta| = 2 delta/d exactly at delta/d=0.9",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 1.8000000000000005
+    },
+    {
+      "label": "(c) the tan bound from tan2 is strictly below delta/d for delta>0",
+      "ok": true,
+      "tol": null,
+      "value": [
+        [
+          0.05,
+          0.99751242241779
+        ],
+        [
+          0.5,
+          0.8284271247461903
+        ],
+        [
+          0.9,
+          0.6537814988872839
+        ]
+      ]
+    },
+    {
+      "label": "(d) with eigenvalues on BOTH sides the tan 2Theta bound FAILS",
+      "ok": true,
+      "tol": 0.0,
+      "value": 1.0470378284401356
+    }
+  ],
+  "claim": "rank-one cluster: |tan 2Theta| <= 2 delta / d, sharp, from the 2-dim reduction",
+  "gate": "g06_projector_tan2",
+  "measurements": {
+    "both_sides_worst_ratio": 1.0470378284401356,
+    "rank_two_note": "excluded by the hypothesis; see notes/06_CONVEX_HULL.md",
+    "tan2_bound_over_delta_over_d": [
+      [
+        0.05,
+        0.99751242241779
+      ],
+      [
+        0.5,
+        0.8284271247461903
+      ],
+      [
+        0.9,
+        0.6537814988872839
+      ]
+    ],
+    "trials": 400,
+    "two_by_two_rows": [
+      [
+        0.05,
+        0.04987562112089298,
+        0.04987562112089027,
+        0.10000000000000546,
+        0.1
+      ],
+      [
+        0.2,
+        0.1925824035672514,
+        0.19258240356725204,
+        0.3999999999999986,
+        0.4
+      ],
+      [
+        0.5,
+        0.41421356237309515,
+        0.4142135623730951,
+        1.0000000000000002,
+        1.0
+      ],
+      [
+        0.9,
+        0.5884033489985556,
+        0.5884033489985556,
+        1.8000000000000005,
+        1.8
+      ]
+    ]
+  },
+  "passed": true,
+  "source_sha256": "1c574d3a01e7f342d027f3f0a9d77832ce14bf61dae0073c1311014bb23572a6"
+}

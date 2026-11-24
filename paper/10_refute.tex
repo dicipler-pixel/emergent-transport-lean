@@ -1,0 +1,44 @@
+\section{What would prove this wrong}\label{sec:refute}
+
+Each claim below is paired with the cheapest observation that would falsify it. A test that needs
+a new instrument is not a test; none of these does.
+
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.52\textwidth}@{}}
+\toprule
+claim & what would refute it \\
+\midrule
+\S\ref{sec:redistribution}: $\Fr$ is traceless and $\Fr=0\iff[\Omega,\PP]=0$ &
+a single matrix pair with nonzero trace, or with $\Fr=0$ and $[\Omega,\PP]\neq0$. None exists;
+the statements are kernel-checked. Refutation here would mean a bug in Lean. \\
+\S\ref{sec:geometry}: $g$ is positive semidefinite &
+a projector family with $g(\dot\PP,\dot\PP)<0$ at some point. \\
+\S\ref{sec:geometry}: $\abs{\operatorname{Im}Q}\le\sqrt{g_{\mu\mu}g_{\nu\nu}}$ &
+a pair of parameters with the ratio exceeding $1$. \\
+\S\ref{sec:hierarchy}: rank one gains nothing &
+a family with $\norm{\dot P}_{\mathrm{op}}<\norm{\dot v_\perp}$ or
+$\norm{\dot P}_F<\sqrt2\norm{\dot v_\perp}$. \\
+\S\ref{sec:hierarchy}: cluster projector rate $\norm{\dot A}/\Gap_{\mathrm{ext}}$ &
+a family whose cluster projector moves faster than $\norm{\dot A}/\Gap_{\mathrm{ext}}$ (would
+refute the constant, not the principle). \\
+\S\ref{sec:totals}: $\sum_{i<j}\norm{\nabla d_{ij}}^2=N(N-2)$ &
+one configuration of $N$ equal masses with a different total. This is the cheapest test in the
+paper: it is a finite computation for any $N$, and a single exception kills it. \\
+\S\ref{sec:shape}: $\det M^*M=12A^2/(xyz)$ &
+one triangle with a different determinant. Likewise one computation. \\
+\S\ref{sec:shape}: the cone is isotropic and linear &
+a measurement of the angular dependence of $\sigma_1^2-\sigma_2^2$ near an equilateral shape with
+a slope other than $3$, or direction-dependent. \\
+\S\ref{sec:shape}: holonomy $-1$ &
+a loop around an equilateral shape returning the eigen-line to itself. \\
+\S\ref{sec:refraction}: Snell for conformal metrics &
+nothing: it is a theorem. What is refutable is the modelling claim that a given physical medium
+is conformal with factor $\rho$, and that is refuted by measuring the index directly. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[The asymmetry this paper is trying to fix]
+Nine of the ten papers in the corpus say what they explain. One says what would refute it. The
+table above is an attempt to make the ratio one to one.
+\end{remark}

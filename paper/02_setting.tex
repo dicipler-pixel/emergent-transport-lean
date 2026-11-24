@@ -1,0 +1,88 @@
+\section{Setting, notation, and the rules of evidence}\label{sec:setting}
+
+\subsection{The transport datum}
+
+Throughout, $H$ is a finite-dimensional real or complex Hilbert space of dimension $n$,
+$\ip{\cdot}{\cdot}$ its inner product, $\norm{\cdot}$ the operator norm and
+$\norm{X}_F^2=\Tr(X^*X)$ the Frobenius (Hilbert--Schmidt) norm. $\PP$ always denotes an
+\emph{orthogonal} projector, $\PP^*=\PP$, $\PP^2=\PP$, and $\QQ:=1-\PP$. $\Tr$ is the trace.
+A \emph{transport datum} is a triple
+\[
+   \bigl(t\mapsto A(t),\ \PP(t),\ \Gap(t)\bigr),
+\]
+where $A(t)$ is a $\C^1$ family of self-adjoint operators, $\PP(t)$ is the orthogonal projector
+onto a \emph{spectral cluster} $\shape(t)\subset\operatorname{spec}A(t)$, and $\Gap(t)>0$ is the
+distance from $\shape(t)$ to the rest of the spectrum. The cluster is the \emph{admissible
+subspace}; the gap $\Gap$ is the only quantity in the theory that is not derived from $A$ and
+$\PP$ themselves.
+
+\begin{remark}[Why a cluster and not an eigenvalue]\label{rem:cluster}
+The theory is stated for clusters even where a single eigenvalue would do, because the two
+behave differently under deformation (\S\ref{sec:hierarchy}). A single-eigenvalue cluster and a
+rank-one projector carry the same information, and \S\ref{sec:hierarchy} shows that the
+projector gains nothing; the gain appears only for clusters of two or more eigenvalues.
+\end{remark}
+
+\subsection{Invariants, and the one symbol per concept rule}
+
+The corpus this paper belongs to has three different objects called $C$: a transport capacity,
+a persistence overlap, and a boundary census. One symbol per concept, from here on.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l l >{\raggedright\arraybackslash}X@{}}
+\toprule
+symbol & object & defined in \\
+\midrule
+$\Omega$ & structural operator, a self-adjoint field & \S\ref{sec:redistribution} \\
+$\Fr(\Omega,\PP)$ & redistribution operator $\PP\Omega\QQ+\QQ\Omega\PP$ & \S\ref{sec:redistribution} \\
+$\pi(\PP_1,\PP_2)$ & persistence $\Tr(\PP_1\PP_2)$ & \S\ref{sec:setting} \\
+$\rho$ & rigidity $\sigma_{\min}^{-2}$ & \S\ref{sec:shape} \\
+$Q_{\mu\nu}$ & quantum geometric tensor & \S\ref{sec:geometry} \\
+$g_{\mu\nu}$ & quantum metric $\operatorname{Re}Q_{\mu\nu}$ & \S\ref{sec:geometry} \\
+$\omega_{\mu\nu}$ & curvature $-2\operatorname{Im}Q_{\mu\nu}$ & \S\ref{sec:geometry} \\
+$\sigma_i$ & singular values of the transport differential & \S\ref{sec:shape} \\
+$\kappa$ & cone slope & \S\ref{sec:shape} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The persistence of two projectors is the one invariant that needs no gap:
+\begin{equation}\label{eq:persistence}
+   \pi(\PP_1,\PP_2):=\Tr(\PP_1\PP_2)=\norm{\PP_2\PP_1}_F^2\ \in[0,\min(k_1,k_2)],
+\end{equation}
+which is \T\ and kernel-checked,\footnote{\lean{EmergentTransport/Basic.lean}:
+\lean{persistence\_frobenius}, \lean{persistence\_nonneg}, and at rank one with value
+$(u\cdot v)^2=\cos^2\theta$, \lean{persistence\_rank\_one}.} with the rank-one value
+$(u\cdot v)^2=\cos^2\theta$; the principal-angle form $\sum_i\cos^2\theta_i$ for higher rank is
+classical \Cc{} and is not used below.
+
+\subsection{The five grades, and the weakest-link rule}
+
+Every statement carries one of
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+grade & meaning \\
+\midrule
+\T & proved in this paper (or kernel-checked, marked \lean{name}) \\
+\V & verified by a named gate or script, with the file and the measured residual \\
+\Cc & cited, with the hypotheses under which it holds stated \\
+\Dd & data reported under a stated protocol, not measured here \\
+\Hh & hypothesis or interpretation, not established \\
+\bottomrule
+\end{tabular}
+\end{center}
+Where a chain of reasoning mixes grades, the weakest link is named in the sentence that states
+the conclusion. This is the corpus's own convention and it is the reason the paper can be
+audited rather than believed.
+
+\subsection{What is not assumed}
+
+No metric on the space of parameters is assumed: the metric of \S\ref{sec:geometry} is
+\emph{derived} from the projector family, and the statement that it is a metric is a theorem
+(\S\ref{sec:geometry}), not a definition. No genericity is assumed except where stated
+(simple eigenvalues, non-degeneracy of a gap). No smoothness beyond $\C^1$ is assumed except
+where derivatives of higher order appear, and there it is stated. No physical system is
+assumed; \S\ref{sec:scope} says exactly what is and is not claimed about the physical readings
+the corpus attaches to the framework.

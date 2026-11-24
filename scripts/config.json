@@ -1,1 +1,18 @@
-{"modules": [{"module": "EmergentTransport.Basic", "path": "EmergentTransport/Basic.lean"}], "expected_theorems": 11, "expected_false_controls": 3, "root_imports": ["EmergentTransport.Basic"]}
+{
+  "modules": [
+    {
+      "module": "EmergentTransport.Basic",
+      "path": "EmergentTransport/Basic.lean"
+    },
+    {
+      "module": "EmergentTransport.GapsAndTotals",
+      "path": "EmergentTransport/GapsAndTotals.lean"
+    }
+  ],
+  "expected_theorems": 29,
+  "expected_false_controls": 6,
+  "root_imports": [
+    "EmergentTransport.Basic",
+    "EmergentTransport.GapsAndTotals"
+  ]
+}

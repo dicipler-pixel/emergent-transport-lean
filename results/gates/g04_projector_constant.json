@@ -1,0 +1,80 @@
+{
+  "assertions": [
+    {
+      "label": "(a) 2x2 model: ratio -> 1 (constant 1 is attained)",
+      "ok": true,
+      "tol": 0.001,
+      "value": 0.999999625000242
+    },
+    {
+      "label": "(a) no ratio exceeds 1",
+      "ok": true,
+      "tol": null,
+      "value": [
+        0.9999625024216925,
+        0.999990625151364,
+        0.9999985000038751,
+        0.999999625000242
+      ]
+    },
+    {
+      "label": "(b) middle cluster (spectrum on both sides): ratio <= 1",
+      "ok": true,
+      "tol": null,
+      "value": 0.9987523388778446
+    },
+    {
+      "label": "(c) finite bound ||P-P'|| <= delta/(gamma-delta) holds on the random sample",
+      "ok": true,
+      "tol": null,
+      "value": 0.8612361133367906
+    },
+    {
+      "label": "(c) the constant-1 finite form FAILS: ratio exceeds 1 somewhere",
+      "ok": true,
+      "tol": null,
+      "value": "recorded in (f) below"
+    },
+    {
+      "label": "(d) rotating family: |dP/dt| / (|dA/dt|/gamma) = 1",
+      "ok": true,
+      "tol": 0.001,
+      "value": 1.0
+    },
+    {
+      "label": "(f) constant-1 finite form fails: ||P-P'||/delta > 1",
+      "ok": true,
+      "tol": null,
+      "value": 1.0463061042042225
+    },
+    {
+      "label": "(f) but the union-gap form holds there",
+      "ok": true,
+      "tol": null,
+      "value": 0.5477431299907041
+    },
+    {
+      "label": "(e) arcsin(1)/(1) = pi/2",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 1.5707963267948966
+    },
+    {
+      "label": "(e) arcsin(x) <= (pi/2) x on [0,1], equality only at x=1",
+      "ok": true,
+      "tol": null,
+      "value": 0.0
+    }
+  ],
+  "claim": "sharp constant 1 for projectors, pi/2 only for the angle",
+  "gate": "g04_projector_constant",
+  "measurements": {
+    "middle_cluster_worst_ratio": 0.9987523388778446,
+    "random_sup_angle_ratio": 0.8887854605766515,
+    "random_sup_ratio": 0.8612361133367906,
+    "rotating_derivative_ratio": 1.0,
+    "worst_constant1_ratio": 1.0463061042042225
+  },
+  "passed": true,
+  "source_sha256": "1c574d3a01e7f342d027f3f0a9d77832ce14bf61dae0073c1311014bb23572a6"
+}
