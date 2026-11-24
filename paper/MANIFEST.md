@@ -4,7 +4,7 @@ Pins the artefacts this draft rests on.
 
 | file | sha256 (first 16) | bytes |
 | :--- | :--- | ---: |
-| `paper/main.pdf` | `642b76a7a58e038e` | 538171 |
+| `paper/main.pdf` | `8f85f1286a4d5065` | 550684 |
 | `paper/main.tex` | `e807eed3379762b2` | 1901 |
 | `paper/fig_sheets.pdf` | `9a62541d794267f5` | 22858 |
 | `EmergentTransport/GapsAndTotals.lean` | `a8b3861623a89b7d` | 10962 |
@@ -20,6 +20,7 @@ Pins the artefacts this draft rests on.
 | `notes/04_PI_OVER_2.md` | `2317be9b0ebd1d28` | 9239 |
 | `notes/05_TAN_THETA.md` | `02a192b82072922f` | 5305 |
 | `notes/06_CONVEX_HULL.md` | `d2e50cd2b2392bde` | 4584 |
+| `notes/07_TWO_MAPS.md` | `ee924697655b122b` | 4481 |
 
 ## Gate state
 
@@ -35,4 +36,5 @@ Pins the artefacts this draft rests on.
 ## Verification
 
 `python3 scripts/verify.py --direct` → 29 theorems, axioms `{propext, Classical.choice,
-Quot.sound}`, 6 false controls rejected.
+Quot.sound}`, 6 false controls rejected (re-run from a clean clone of
+`openmath/gaps-and-totals` at 9aaedaf).

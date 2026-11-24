@@ -19,10 +19,13 @@ variation $\dot\PP$,
 \begin{equation}\label{eq:metric-norm}
    g(\dot\PP,\dot\PP)=\norm{\PP\dot\PP\QQ}_F^2=\tfrac12\norm{\dot\PP}_F^2=\tfrac12\Tr(\dot\PP^2).
 \end{equation}
-\T\ The identity \eqref{eq:metric-norm} is the redistribution theorem in the form of a metric:
-$\dot\PP=\PP\dot\PP\QQ+\QQ\dot\PP\PP$ (differentiate $\PP^2=\PP$), so Theorem~\ref{thm:norm}
-applied to $\Omega=\dot\PP$ gives $\norm{\PP\dot\PP\QQ}_F^2=\tfrac12\norm{\dot\PP}_F^2$.
-The kernel checks both halves: \lean{redistribution\_norm} and \lean{half\_commutator\_norm}.
+The identity $g_\PP(V,V)=\tfrac12\Tr(V^2)$ is the June paper's \Cc{} \cite{corpus}, where
+the metric is defined that way; what is added here is the derivation, which makes it the
+special case of the redistribution theorem: $\dot\PP=\PP\dot\PP\QQ+\QQ\dot\PP\PP$
+(differentiate $\PP^2=\PP$), so Theorem~\ref{thm:norm} applied to $\Omega=\dot\PP$ gives
+$\norm{\PP\dot\PP\QQ}_F^2=\tfrac12\norm{\dot\PP}_F^2$. \T\ for the derivation, \Cc\ for the
+identity; the kernel checks both halves (\lean{redistribution\_norm},
+\lean{half\_commutator\_norm}).
 \end{theorem}
 
 \begin{proof}
@@ -41,8 +44,9 @@ real, hence $\operatorname{Im}Q^\circ=0$ identically and $Q^\circ$ cannot carry 
 it is, by Theorem~\ref{thm:qgt}, is twice the metric: $Q^\circ=2g$. The corrected tensor $Q$ of
 \eqref{eq:qgt} has a genuine imaginary part, and it is the corpus's own form: its later paper
 \Cc{} \cite{iqgt} writes the intrinsic tensor as $Q_{\PP}(V,W)=\Tr(\PP VW)$, which is
-\eqref{eq:qgt} for $V=\partial_\mu\PP$, $W=\partial_\nu\PP$; the object $Q^\circ$ was an earlier
-form in the corpus, not an error this paper discovers. \V\ Both facts are measured in
+\eqref{eq:qgt} for $V=\partial_\mu\PP$, $W=\partial_\nu\PP$; the object $Q^\circ$ was not in fact
+a form the corpus ever used --- the June paper states $Q_\PP(V,W)=\Tr(\PP VW)$ already --- so
+this remark corrects an earlier draft of \emph{this} paper, not the corpus. \V\ Both facts are measured in
 \gate{results/swarm/check\_D2\_m7.py} (literal imaginary part exactly zero; nonzero curvature
 $0.358678$): two independent reports found the same error, which is why it is recorded here
 rather than quietly repaired.
@@ -58,29 +62,35 @@ Berry phase about a cone is $\pi$ per unit winding, \S\ref{sec:hierarchy}).
 \end{theorem}
 
 \begin{theorem}[Metric--curvature bound]\label{thm:bound}
-For every rank $k$ and every pair $(\mu,\nu)$,
+For every rank $k$ and every pair of tangent directions $V,W$,
 \begin{equation}\label{eq:bound}
-   \abs{\operatorname{Im}Q_{\mu\nu}}\le\sqrt{g_{\mu\mu}g_{\nu\nu}},
-   \qquad\text{hence}\qquad \abs{\omega_{\mu\nu}}\le 2\sqrt{g_{\mu\mu}g_{\nu\nu}} .
+   \abs{\omega(V,W)}\;\le\;2\sqrt{g(V,V)g(W,W)-g(V,W)^{2}}\;\le\;2\sqrt{g(V,V)g(W,W)} ,
+   \qquad\text{and}\qquad \abs{\operatorname{Im}Q(V,W)}\le\tfrac12\abs{\omega(V,W)} .
 \end{equation}
-Both inequalities are sharp; equality in the first requires $Z_\nu=i\lambda Z_\mu$ with
-$\lambda\in\R$, i.e.\ the two tangents related by the complex structure.
-\T\ (Cauchy--Schwarz on $Z_\mu,Z_\nu$ of Theorem~\ref{thm:qgt}); the equality case is the
-Cauchy--Schwarz equality together with $\operatorname{Re}\ip{Z_\mu}{Z_\nu}=0$. Sharpness: \V\
+All three are Gram-determinant inequalities for the pair $Z_V,Z_W$ of
+Theorem~\ref{thm:qgt}: $\abs{Q(V,W)}^2=g(V,W)^2+\tfrac14\omega(V,W)^2$ and
+$g(V,V)g(W,W)\ge\abs{Q(V,W)}^2$. The first is sharp, with equality exactly when $V,W$ are
+linearly dependent over $\C$; the second drops the Gram term and is sharp only when $g(V,W)=0$.
+\T\ (Cauchy--Schwarz and the Gram determinant). Sharpness: \V\
 \gate{results/swarm/check\_D3\_m1.py}.
 \end{theorem}
 
-\begin{remark}[The factor $2$ is not a rank-dependent constant]\label{rem:factor2}
-It is worth saying plainly, because a whole sub-question in the review dissolved once it was
-named: the bound with constant $2$ belongs to the \emph{curvature} $\omega$, and the bound with
-constant $1$ belongs to $\operatorname{Im}Q$; both hold for every rank, because
-Cauchy--Schwarz does not see the rank. What does depend on rank is the \emph{attainability}
-pattern of equality in \eqref{eq:bound}: for $k=1$ it is attained by the two-band cone, for
-$k\ge2$ it requires two tangents that are conjugate within the same plane, which the
-$k$-dimensional family has to be built to allow. The corpus's
-$\abs{\Omega(V,W)}\le2\sqrt{C(V)C(W)}\sin\theta_G$ is \eqref{eq:bound} with $C=g$, once
-$C$ is defined; the factor of $\sin\theta_G$ lives in $g$, not outside it.
+\begin{remark}[The sharp form is the corpus's; an earlier draft of this paper was weaker]
+\label{rem:factor2}
+Theorem 12 of the June paper \Cc{} \cite{corpus} states
+$\abs{\Omega_\PP(V,W)}\le2\sqrt{g_\PP(V,V)g_\PP(W,W)-g_\PP(V,W)^2}$, which with
+$\Omega_\PP=2\operatorname{Im}Q=\omega$ is the first inequality of \eqref{eq:bound} --- the sharp
+Gram-determinant form, valid for every rank because a Gram determinant does not see the rank.
+An earlier draft of this paper offered $\abs{\omega}\le2\sqrt{g(V,V)g(W,W)}$ as a correction of
+that bound. It is not one: the second inequality of \eqref{eq:bound} is the first with the Gram
+term discarded, so the corpus's statement is the stronger of the two and this paper's was the
+weaker. What survives of the earlier point is only that the constant $2$ belongs to the
+\emph{curvature} and the constant $1$ to $\operatorname{Im}Q$ in the normalisation of
+\eqref{eq:qgt} where $\omega=-2\operatorname{Im}Q$; in the corpus's normalisation
+$Q=g+\tfrac{i}{2}\Omega$ the same statement reads $\abs{\Omega}\le2\sqrt{\cdot}$ and
+$\abs{\operatorname{Im}Q}\le\sqrt{\cdot}$, which is the same pair of constants.
 \end{remark}
+
 
 \begin{remark}[What the section says, in one sentence]
 The metric and the curvature are the symmetric and antisymmetric parts of one derived object,
