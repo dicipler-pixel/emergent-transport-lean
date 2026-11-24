@@ -1,0 +1,89 @@
+\section{The geometry is derived, not assumed}\label{sec:geometry}
+
+Let $\PP(x)$ be a $\C^1$ family of orthogonal projectors of constant rank $k$, parametrised by
+$x=(x^1,\dots,x^m)$ in an open set. Write $\partial_\mu=\partial/\partial x^\mu$.
+
+\begin{definition}[Quantum geometric tensor of a projector family]\label{def:qgt}
+\begin{equation}\label{eq:qgt}
+   Q_{\mu\nu}(x):=\Tr\bigl(\PP\,\partial_\mu\PP\,\partial_\nu\PP\bigr),\qquad
+   g_{\mu\nu}:=\operatorname{Re}Q_{\mu\nu},\qquad
+   \omega_{\mu\nu}:=-2\operatorname{Im}Q_{\mu\nu}.
+\end{equation}
+\end{definition}
+
+The placement of $\PP$ matters and is the point of the next remark.
+
+\begin{theorem}[$Q$ is a Hermitian tensor and $g$ is a metric]\label{thm:qgt}
+$Q$ is Hermitian, $g$ is symmetric and positive semidefinite, and for a single parameter with
+variation $\dot\PP$,
+\begin{equation}\label{eq:metric-norm}
+   g(\dot\PP,\dot\PP)=\norm{\PP\dot\PP\QQ}_F^2=\tfrac12\norm{\dot\PP}_F^2=\tfrac12\Tr(\dot\PP^2).
+\end{equation}
+\T\ The identity \eqref{eq:metric-norm} is the redistribution theorem in the form of a metric:
+$\dot\PP=\PP\dot\PP\QQ+\QQ\dot\PP\PP$ (differentiate $\PP^2=\PP$), so Theorem~\ref{thm:norm}
+applied to $\Omega=\dot\PP$ gives $\norm{\PP\dot\PP\QQ}_F^2=\tfrac12\norm{\dot\PP}_F^2$.
+The kernel checks both halves: \lean{redistribution\_norm} and \lean{half\_commutator\_norm}.
+\end{theorem}
+
+\begin{proof}
+Hermiticity: $\overline{Q_{\nu\mu}}=\overline{\Tr(\PP\partial_\nu\PP\partial_\mu\PP)}=\Tr\bigl((\PP\partial_\nu\PP\partial_\mu\PP)^*\bigr)=\Tr(\PP\partial_\mu\PP\partial_\nu\PP)=Q_{\mu\nu}$.
+Positivity: put $Z_\mu:=\QQ\partial_\mu\PP\,\PP$. Since $\partial_\mu\PP=\PP\partial_\mu\PP\QQ+\QQ\partial_\mu\PP\PP$,
+$\Tr(\PP\partial_\mu\PP\partial_\nu\PP)=\Tr(\PP\partial_\mu\PP\,\QQ\,\partial_\nu\PP)=\Tr(Z_\mu^*Z_\nu)$,
+so $Q_{\mu\nu}=\ip{Z_\mu}{Z_\nu}_F$ and $g_{\mu\mu}=\norm{Z_\mu}_F^2\ge0$. Equation
+\eqref{eq:metric-norm} is the special case $\mu=\nu$ together with Theorem~\ref{thm:norm}.
+\end{proof}
+
+\begin{remark}[A second correction: the tensor must carry the projector]\label{rem:qgt-correction}
+An earlier formulation used $Q^\circ_{\mu\nu}=\Tr(\partial_\mu\PP\,\partial_\nu\PP)$ as the
+quantum geometric tensor. That object is real: $\partial_\mu\PP$ is self-adjoint, so
+$(\partial_\mu\PP\partial_\nu\PP)^*=\partial_\nu\PP\partial_\mu\PP$ and $\Tr$ of the product is
+real, hence $\operatorname{Im}Q^\circ=0$ identically and $Q^\circ$ cannot carry curvature. What
+it is, by Theorem~\ref{thm:qgt}, is twice the metric: $Q^\circ=2g$. The corrected tensor $Q$ of
+\eqref{eq:qgt} has a genuine imaginary part, and it is the corpus's own form: its later paper
+\Cc{} \cite{iqgt} writes the intrinsic tensor as $Q_{\PP}(V,W)=\Tr(\PP VW)$, which is
+\eqref{eq:qgt} for $V=\partial_\mu\PP$, $W=\partial_\nu\PP$; the object $Q^\circ$ was an earlier
+form in the corpus, not an error this paper discovers. \V\ Both facts are measured in
+\gate{results/swarm/check\_D2\_m7.py} (literal imaginary part exactly zero; nonzero curvature
+$0.358678$): two independent reports found the same error, which is why it is recorded here
+rather than quietly repaired.
+\end{remark}
+
+\begin{theorem}[Curvature and its periods]\label{thm:curv}
+For a $\C^2$ family, $\omega=\tfrac12\omega_{\mu\nu}\df x^\mu\wedge\df x^\nu$ is closed,
+$\df\omega=0$. For a closed oriented surface $\shape$ and rank $k=1$,
+$\frac1{2\pi}\int_\shape\omega\in\mathbb{Z}$; for higher rank the trace of the curvature is
+likewise integral (Chern--Weil). \T\ closedness, from $\PP^2=\PP$ and the symmetry of mixed
+partials; the integrality is classical \Cc{} (Chern--Weil theory; for the rank-one case the
+Berry phase about a cone is $\pi$ per unit winding, \S\ref{sec:hierarchy}).
+\end{theorem}
+
+\begin{theorem}[Metric--curvature bound]\label{thm:bound}
+For every rank $k$ and every pair $(\mu,\nu)$,
+\begin{equation}\label{eq:bound}
+   \abs{\operatorname{Im}Q_{\mu\nu}}\le\sqrt{g_{\mu\mu}g_{\nu\nu}},
+   \qquad\text{hence}\qquad \abs{\omega_{\mu\nu}}\le 2\sqrt{g_{\mu\mu}g_{\nu\nu}} .
+\end{equation}
+Both inequalities are sharp; equality in the first requires $Z_\nu=i\lambda Z_\mu$ with
+$\lambda\in\R$, i.e.\ the two tangents related by the complex structure.
+\T\ (Cauchy--Schwarz on $Z_\mu,Z_\nu$ of Theorem~\ref{thm:qgt}); the equality case is the
+Cauchy--Schwarz equality together with $\operatorname{Re}\ip{Z_\mu}{Z_\nu}=0$. Sharpness: \V\
+\gate{results/swarm/check\_D3\_m1.py}.
+\end{theorem}
+
+\begin{remark}[The factor $2$ is not a rank-dependent constant]\label{rem:factor2}
+It is worth saying plainly, because a whole sub-question in the review dissolved once it was
+named: the bound with constant $2$ belongs to the \emph{curvature} $\omega$, and the bound with
+constant $1$ belongs to $\operatorname{Im}Q$; both hold for every rank, because
+Cauchy--Schwarz does not see the rank. What does depend on rank is the \emph{attainability}
+pattern of equality in \eqref{eq:bound}: for $k=1$ it is attained by the two-band cone, for
+$k\ge2$ it requires two tangents that are conjugate within the same plane, which the
+$k$-dimensional family has to be built to allow. The corpus's
+$\abs{\Omega(V,W)}\le2\sqrt{C(V)C(W)}\sin\theta_G$ is \eqref{eq:bound} with $C=g$, once
+$C$ is defined; the factor of $\sin\theta_G$ lives in $g$, not outside it.
+\end{remark}
+
+\begin{remark}[What the section says, in one sentence]
+The metric and the curvature are the symmetric and antisymmetric parts of one derived object,
+the tensor $Q$, and the metric is not an input but a squared norm of a block of $\dot\PP$ ---
+which is why \S\ref{sec:redistribution} had to come first.
+\end{remark}

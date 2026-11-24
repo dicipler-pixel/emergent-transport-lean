@@ -1,0 +1,99 @@
+{
+  "assertions": [
+    {
+      "label": "(a) ||dP||_F = sqrt2 ||w||",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 2.220446049250313e-16
+    },
+    {
+      "label": "(a) ||dP||_op = ||w||",
+      "ok": true,
+      "tol": 1e-12,
+      "value": 6.661338147750939e-16
+    },
+    {
+      "label": "(b) eigenvalues are +-t^(1/2) at t=1e-2",
+      "ok": true,
+      "tol": 1e-10,
+      "value": 0.0
+    },
+    {
+      "label": "(b) eigenvalues are +-t^(1/2) at t=1e-3",
+      "ok": true,
+      "tol": 1e-10,
+      "value": 6.938893903907228e-18
+    },
+    {
+      "label": "(b) eigenvalues are +-t^(1/2) at t=1e-4",
+      "ok": true,
+      "tol": 1e-10,
+      "value": 0.0
+    },
+    {
+      "label": "(b) eigenvalues are +-t^(1/2) at t=1e-5",
+      "ok": true,
+      "tol": 1e-10,
+      "value": 0.0
+    },
+    {
+      "label": "(b) eigenvalues are +-t^(1/2) at t=1e-6",
+      "ok": true,
+      "tol": 1e-10,
+      "value": 0.0
+    },
+    {
+      "label": "(b) eigenvector distance / sqrt(t) -> 2",
+      "ok": true,
+      "tol": 0.02,
+      "value": [
+        1.9900743804199783,
+        1.9990007493755466,
+        1.999900007499375,
+        1.9999900000749997,
+        1.99999900000075
+      ]
+    },
+    {
+      "label": "(b) kappa_2(V) * sqrt(t) -> 1",
+      "ok": true,
+      "tol": 0.005,
+      "value": [
+        1.0000000000000007,
+        0.9999999999999998,
+        1.0,
+        1.0,
+        1.0000000000000002
+      ]
+    },
+    {
+      "label": "(c) real family: v is the unit eigenvector for -1",
+      "ok": true,
+      "tol": 1e-10,
+      "value": 2.0014830212433605e-16
+    },
+    {
+      "label": "(c) real family: eigenline returns negated (holonomy -1)",
+      "ok": true,
+      "tol": 1e-06,
+      "value": -0.9999999999999999
+    },
+    {
+      "label": "(c) complex family: Berry phase gamma = pi",
+      "ok": true,
+      "tol": 1e-05,
+      "value": 0.9999999835505647
+    },
+    {
+      "label": "(c) complex family: holonomy exp(i gamma) = -1",
+      "ok": true,
+      "tol": 0.0001,
+      "value": 5.167742512835624e-08
+    }
+  ],
+  "claim": "rank-one norms, exceptional-point exponents, conical sign",
+  "gate": "g02_gap_hierarchy",
+  "measurements": {},
+  "passed": true,
+  "source_sha256": "1c574d3a01e7f342d027f3f0a9d77832ce14bf61dae0073c1311014bb23572a6"
+}

@@ -1,0 +1,109 @@
+\section{Introduction}\label{sec:intro}
+
+\subsection{One idea, ten coats}
+
+The operator-first transport programme that this paper belongs to is a series of preprints
+\Cc{} around a single structure: a family of subspaces carried along a path, together with the
+quantity that decides what can be resolved along the way. The series places that quantity in
+different positions --- in the spectrum (Riesz projectors, exceptional points), between two
+subspaces (principal angles, persistence), in the pseudospectrum (transient growth), at an
+interface (refraction, Schur complements), or in the readout (numerator selection) --- and each
+placement is a paper. What the series has not had is a statement of the structure that is
+narrow enough to be wrong. This paper attempts one --- for three of its objects, and in a
+different idiom: it uses the standard quantum geometric tensor and none of the programme's own
+machinery (Dirac time, the vacuum-operator two-parameter family, connection energy). It is a
+companion line, not a replacement for any part of the programme, and where it touches the
+corpus's results it does so as an independent check.
+
+\subsection{The thesis}
+
+Two sentences, and the paper is their elaboration.
+
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{Gaps.} A transport invariant is stable to the extent that the gap across
+the boundary of the cluster defining it is open, and the relevant gap is never the one inside
+the cluster.
+\item \textbf{Totals.} A transport can forget almost every direction and still retain a constant;
+for the distance map of $N$ bodies that constant is $N(N-2)$, and the shape only decides how it
+is distributed.
+\end{enumerate}
+
+The first sentence is a correction of the series' ``hierarchy principle of structural
+persistence'', which as stated is false at its first level. The second is a theorem the series
+did not have, and it is a different statement from the per-shape spectral formula, not a
+correction of it: that formula is about the map to squared distances and holds for its own
+operator (Remark~\ref{rem:twomaps}).
+
+\subsection{What is new here}
+
+\begin{enumerate}[label=\textbf{C\arabic*.},leftmargin=2.2em]
+\item \textbf{The redistribution theorem} (\S\ref{sec:redistribution}). The off-diagonal part of
+a structural operator is traceless, vanishes if and only if the operator commutes with the
+projector, and has the same Frobenius norm as the commutator. The algebra is elementary; the
+point is that it makes ``redistribution'' and ``non-commutativity'' the same quantity, which the
+series treats as two phenomena.
+
+\item \textbf{The geometry is derived} (\S\ref{sec:geometry}). The quantum geometric tensor of a
+projector family is $Q_{\mu\nu}=\Tr(\PP\partial_\mu\PP\partial_\nu\PP)$; its real part is a metric
+because it is a squared norm of a block of $\dot\PP$, and the curvature is $-2\operatorname{Im}Q$
+with $\abs{\omega}\le2\sqrt{g_{\mu\mu}g_{\nu\nu}}$. The object the series writes down,
+$\Tr(\partial_\mu\PP\partial_\nu\PP)$, is real and is twice the metric; it cannot carry curvature.
+
+\item \textbf{The hierarchy, quantified} (\S\ref{sec:hierarchy}). With constants: eigenvalues are
+$1$-Lipschitz and unprotected; a rank-one projector moves at exactly the eigenvector's rate in
+operator norm and $\sqrt2$ faster in Frobenius, so it protects nothing; a cluster projector is
+protected by the external gap --- with the union gap in the denominator for a finite pair, and
+constant $1$ in the infinitesimal form that the paper uses --- and its angle obeys a sharp
+$\tan 2\Theta$ bound when the perturbation is off-diagonal and the cluster is a separated simple
+eigenvalue; the $\pi/2$ that circulates in the
+literature is the constant of the angle bound, attained at the edge of the stable range;
+integers are locally constant. The exceptional point is invisible to the cluster and fatal to the basis.
+
+\item \textbf{The capacity sum rule} (\S\ref{sec:totals}). $\sum_{i<j}\norm{\nabla d_{ij}}^2
+=(N-1)\sum_i1/m_i-\sum_{i<j}d_{ij}^2$, hence $N(N-2)$ for equal unit masses, for every
+configuration. The total is combinatorial; the distribution is the shape.
+
+\item \textbf{The shape sphere, solved} (\S\ref{sec:shape}). $\sigma_1^2+\sigma_2^2=3$,
+$\det M^*M=12A^2/(d_{12}^2d_{13}^2d_{23}^2)$ with maximum $9/4$ exactly at the equilateral shapes
+and zero exactly on the collinear locus, a linear isotropic cone of slope $3$, rank drop where the
+gap is largest, and holonomy $-1$. Mass symmetry breaking does not create the cone and does not
+tilt it: it moves the two optic points off the equilateral shapes by $\varepsilon^2/9$ and makes
+the cone elliptic.
+
+\item \textbf{Refraction, demoted} (\S\ref{sec:refraction}). $\rho_1\sin^2\theta_1=\rho_2\sin^2
+\theta_2$ is Snell's law for the conformal metric $\rho g$. The theorem is about geodesics; the
+claim that a physical medium is conformal with factor $\rho$ is a hypothesis, and saying which is
+which is the point.
+\end{enumerate}
+
+\subsection{What is not claimed}
+
+No physical system is modelled here, and \S\ref{sec:scope} says so at the level of individual
+claims: the covariance-data reproduction is a consistency check on published data and not
+evidence for the framework; the cosmological reading is circular as stated and is not used; the
+psychophysical reading is an interpretation without a theorem. The paper also does not claim that
+the framework is new mathematics --- the algebra of \S\S\ref{sec:redistribution}--\ref{sec:geometry}
+is elementary and the classical inputs of \S\ref{sec:hierarchy} are classical. What is new is the
+assemblage, the constants of \S\ref{sec:hierarchy}, and the two exact results of
+\S\S\ref{sec:totals}--\ref{sec:shape}. Several remarks record corrections; the reader should know
+that some of them correct earlier drafts of \emph{this} paper rather than the corpus.
+
+\subsection{How to read it}
+
+Every statement carries a grade --- \T\ proved, \V\ machine-verified with the file and residual
+named, \Cc\ cited, \Dd\ data, \Hh\ hypothesis --- and where a chain mixes grades the weakest link
+is named in the sentence that draws the conclusion (\S\ref{sec:setting}). The paper is written to
+be checked rather than believed: \S\ref{sec:refute} lists, for each claim, the cheapest
+observation that would falsify it, and Appendix~\ref{app:repro} gives the commands that
+re-run everything.
+
+\subsection{Roadmap}
+
+\S\ref{sec:setting} fixes notation and one symbol per concept. \S\ref{sec:redistribution} proves
+the redistribution theorem, \S\ref{sec:geometry} derives the metric and curvature from it,
+\S\ref{sec:hierarchy} states the hierarchy with its constants, crediting the corpus's own
+tip-and-tail law, and records where earlier drafts of this paper were wrong.
+\S\ref{sec:totals} proves the sum rule, \S\ref{sec:shape} solves the shape sphere,
+\S\ref{sec:refraction} disposes of the refraction law. \S\S\ref{sec:scope}--\ref{sec:open} state
+the scope, the refutations and the open problems; the appendices carry the ledger, the
+reproduction instructions and the classical inputs.

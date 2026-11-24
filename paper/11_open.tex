@@ -1,0 +1,58 @@
+\section{Open problems}\label{sec:open}
+
+Each problem is stated with the reason it is open, so that a reader can tell a hard problem from
+an unattempted one.
+
+\begin{enumerate}[label=\textbf{O\arabic*.},leftmargin=2.4em]
+\item \textbf{The angle over a long path.} Theorem~\ref{thm:riesz} settles the derivative bound
+(constant $1$, sharp), gives the union-gap form for a single perturbation, and identifies $\pi/2$
+as the endpoint value of the angle bound. What is not settled is the \emph{integrated} version:
+along a long path with a gap that may shrink, the angle can pass through $\pi/2$ and the count can
+change, and no bound is known for the total angular travel in terms of
+$\int\norm{\dot A}/\Gap\,\df t$. This is the adiabatic question in a finite-dimensional setting,
+and it is open because the derivative bound cannot be integrated past the point where the angle
+reaches $\pi/2$. The sketch of what a proof would need is in
+\gate{notes/04\_PI\_OVER\_2.md}, whose earlier version stated the problem in the form that
+Theorem~\ref{thm:riesz} has now resolved.
+
+\item \textbf{The rank-$k$ $\tan 2\Theta$ bound.} Theorem~\ref{thm:tan2} settles rank one
+completely, with an exact constant and an exact sharpness family. The gap to close is
+$k\ge2$: given a cluster projector $\PP$ of rank $k$ and an off-diagonal perturbation $V$ whose
+spectral sets have disjoint convex hulls, is $\abs{\tan\Theta}\le\delta/d$ for the operator
+angle, and with which constant? The rank-one proof does not extend, and the obstruction is
+identifiable: its decisive step is $b-a\ge d$, where $b=\ip{Aw}{w}$ ranges over the numerical
+range of the compression; for $k\ge2$ one gets such a two-dimensional reduction for each
+eigenvector separately, but they do not assemble into a bound on the angular operator
+$X$ because the Riccati equation is quadratic, and the elementary trace estimate gives only
+$w\norm{X}_F^2-d\norm{X}_F+w\ge0$, which is vacuous when $w<d/2$. What is needed is a solution
+theory for $A_+X-XA_-=XBX-B^*$ with an a priori bound on $\norm X$: this is precisely the
+machinery of \cite{kmm1,kmm2,kmm3}, which we cite and have not re-derived, and which is where a
+proof would begin. A gate sampling the rank-$k$ separated case is described in
+\gate{notes/06\_CONVEX\_HULL.md}.
+
+\item \textbf{The optic points, exactly.} Theorem~\ref{thm:optic} locates the two optic points
+numerically and gives the displacement law $\varepsilon^2/9+O(\varepsilon^3)$ for one family.
+What is missing is a closed form: the displacement is the zero of a two-by-two system whose
+entries are algebraic in the masses, so a formula exists and has not been found. The same
+question for $N\ge4$ bodies is open and is the natural continuation of \S\ref{sec:shape}.
+
+\item \textbf{A per-shape capacity law.} The sum rule fixes the total; it says nothing about how
+the total is distributed. A distribution law would need a statement about the eigenvalues of
+$M^*M$ beyond their sum, i.e.\ beyond Theorems~\ref{thm:shape-sum}--\ref{thm:shape-det}. For the
+three-body problem the pair $(\operatorname{tr},\det)$ already determines the spectrum, so the
+problem is closed there and open from $N=4$ on.
+
+\item \textbf{The square case in general dimension.} When $N=d+1$ the Gram matrix $G=X^\top X$ is
+square, its trace-one slice is the shape space, and the transport operator splits into an
+eigenvalue sector and an eigenframe sector whose spectra are computable. The corpus states this
+with an interlacing theorem; the present paper does not use it, and the statement has not been
+re-derived here. It is the natural next theorem, and it is the one most in need of being written
+down with its hypotheses explicit.
+
+\item \textbf{The census, quantitatively.} The corpus counts channels and measures plateaus with
+a fitted constant $C_0$. Given Theorem~\ref{thm:sumrule}, the natural question is exact: for
+$N$ bodies, how many pairwise distances can be resolved to accuracy $\varepsilon$ as the shape
+varies over a ball of radius $\delta$? That is a question about the singular values of $M$ and
+hence about the constant in a $\sin\theta\ge\varepsilon$ dictionary; it is open, and it is the
+form in which ``the price of a direction'' can become a theorem rather than a measurement.
+\end{enumerate}

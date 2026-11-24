@@ -1,0 +1,119 @@
+\section{The ledger: every claim, its grade, and its evidence}\label{app:ledger}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.30\textwidth}p{0.10\textwidth}p{0.50\textwidth}@{}}
+\toprule
+claim & grade & evidence \\
+\midrule
+Thm~\ref{thm:traceless} $\Tr\Fr=0$ & \T & \lean{GapsAndTotals.redistribution\_traceless} \\
+Lem~\ref{lem:blocks} block identities & \T & \lean{redistribution\_block12}, \lean{redistribution\_block21}, \lean{block\_decomposition} \\
+Thm~\ref{thm:compat} $\Fr=0\iff[\Omega,\PP]=0$ & \T & \lean{redistribution\_zero\_iff\_commute} \\
+Thm~\ref{thm:norm} norm identity & \T & \lean{redistribution\_norm}, \lean{half\_commutator\_norm}, \lean{commutator\_skew} \\
+Ex.~\ref{ex:nonnormal} non-normal counterexample & \T/\V & \lean{norm\_needs\_selfadjoint.lean} (must fail) \\
+\midrule
+Thm~\ref{thm:qgt} $Q$ Hermitian, $g$ PSD & \T & Cauchy--Schwarz on $Z_\mu$; \lean{redistribution\_norm} \\
+Rem.~\ref{rem:qgt-correction} $Q^\circ=2g$ is real & \T/\V & \gate{check\_D2\_m7.py}: literal imaginary part $0$ \\
+Thm~\ref{thm:curv} closedness, periods & \T/\Cc & Chern--Weil \\
+Thm~\ref{thm:bound} curvature bound & \T/\V & \gate{check\_D3\_m1.py} \\
+\midrule
+Thm~\ref{thm:weyl} Weyl & \Cc & Weyl (1912) \\
+Thm~\ref{thm:riesz}(a) finite pair, union gap & \Cc/\V & Davis--Kahan; \gate{g04\_projector\_constant} \\
+Thm~\ref{thm:riesz}(b) infinitesimal, constant 1 & \T/\V & Davis--Kahan $+$ limit; \gate{g04} \\
+Thm~\ref{thm:riesz}(c) angle, $\pi/2$ at the endpoint & \T/\Cc & $\arcsin$; Albeverio--Motovilov \\
+Thm~\ref{thm:tan2} rank one, $\abs{\tan 2\Theta}\le2\delta/d$ & \T/\V & proof above; \gate{g06\_projector\_tan2} \\
+Rem.~\ref{rem:tan} off-diagonal $\tan\Theta\le\delta/d$, rank $k$ & \Cc/\V & Motovilov--Selin; \gate{g05\_tan\_theta} \\
+Thm~\ref{thm:rankone} rank one, no gain & \T/\V & \gate{g02\_gap\_hierarchy} (a) \\
+Thm~\ref{thm:ep} exceptional point & \T/\V & \gate{g02\_gap\_hierarchy} (b) \\
+Thm~\ref{thm:winding} winding and sign & \T/\V & \gate{g02\_gap\_hierarchy} (c); \gate{check\_D6\_m8.py} \\
+\midrule
+Lem~\ref{lem:inertia} inertia identity & \T & expansion \\
+Thm~\ref{thm:perpairs} per-pair capacity & \T/\V & \gate{g01\_shape\_spectrum} (g) \\
+Thm~\ref{thm:sumrule} sum rule & \T/\V & \gate{g01\_shape\_spectrum} (f) \\
+\midrule
+Thm~\ref{thm:shape-sum} $\sigma_1^2+\sigma_2^2=3$ & \T/\V & \gate{g01\_shape\_spectrum} (a) \\
+Thm~\ref{thm:shape-det} determinant, maximum & \T/\V & \gate{g01\_shape\_spectrum} (b),(c),(h) \\
+Thm~\ref{thm:cone} linear isotropic cone & \T/\V & \gate{g01\_shape\_spectrum} (d) \\
+Thm~\ref{thm:shape-holonomy} holonomy $-1$ & \T/\V & \gate{g01\_shape\_spectrum} (e) \\
+Thm~\ref{thm:optic} the optic points move & \T/\V & \gate{g03\_mass\_breaking} \\
+\midrule
+Thm~\ref{thm:snell} Snell for conformal metrics & \T & first variation \\
+\midrule
+physical readings (\S\ref{sec:scope}) & \Dd/\Hh & not used by any theorem \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Reproduction}\label{app:repro}
+
+\paragraph{Kernel.} The finite algebraic core is \lean{EmergentTransport/GapsAndTotals.lean}
+(18 theorems) together with \lean{EmergentTransport/Basic.lean} (11 theorems), checked by
+\begin{verbatim}
+python3 scripts/verify.py --direct
+# OK: 29 theorems, axioms used: ['Classical.choice', 'Quot.sound', 'propext'],
+# 6 false controls rejected
+\end{verbatim}
+The verifier audits the axioms of every named theorem (only the three standard ones are allowed,
+which excludes \lean{sorryAx}, project axioms and \lean{native\_decide}), requires six deliberately
+false statements to \emph{fail} for a mathematical reason, and records the SHA-256 of every source
+file. On a machine where the Mathlib checkout is writable, the same script runs under
+\lean{lake env lean} without the flag.
+
+\paragraph{Gates.} Every number in \S\S\ref{sec:redistribution}--\ref{sec:shape} is produced by a
+gate that writes JSON:
+\begin{verbatim}
+python3 scripts/gates/g01_shape_spectrum.py
+python3 scripts/gates/g02_gap_hierarchy.py
+python3 scripts/gates/g03_mass_breaking.py
+python3 scripts/gates/g04_projector_constant.py
+python3 scripts/gates/g05_tan_theta.py
+python3 scripts/gates/g06_projector_tan2.py
+\end{verbatim}
+The first has 20 assertions on the shape$\to$distance differential, the second 13 on rank one,
+the exceptional point and the sign, the third 20 on the optic points under mass breaking, the fourth 10 on the projector constants and the failure of the constant-1 finite form, the fifth 4 on the off-diagonal $\tan\Theta$ bound, the sixth 12 on the rank-one $\tan 2\Theta$ theorem.
+The paper's figures of merit (the closed form of $\det M^*M$, the cone slope, the holonomy, the
+per-pair identity) are read from \gate{results/gates/*.json}, never typed by hand.
+
+\paragraph{The swarm records.} The proofs of \S\ref{sec:hierarchy}.2--\S\ref{sec:hierarchy}.5 and of
+Theorem~\ref{thm:perpairs} were produced and checked in eight independent directions whose
+reports and scripts are in \gate{results/swarm/}, with \gate{README.md} recording what each one
+corrected. Three claims in this paper were corrected during that process and the superseded
+statements are kept in \gate{notes/02\_PLAN.md}, not deleted.
+
+\section{The classical inputs, stated}\label{app:classical}
+
+For completeness, the two results imported in \S\ref{sec:hierarchy}:
+
+\emph{Weyl.} For self-adjoint $A,A'$ and eigenvalues ordered increasingly,
+$\abs{\lambda_i(A')-\lambda_i(A)}\le\norm{A'-A}$. Proof: the min--max characterisation of the
+$i$-th eigenvalue makes it $1$-Lipschitz in $A$ in the operator norm.
+
+\emph{Davis--Kahan.} Let a spectral cluster $\shape$ of a self-adjoint $A$ satisfy
+$\operatorname{dist}(\shape,\operatorname{spec}A\setminus\shape)\ge\Gap$, and let $\PP,\PP'$ be
+the orthogonal projectors onto $\shape$ and onto the corresponding part of the spectrum of
+$A'=A+E$. The sine theorem states $\norm{\PP-\PP'}\le\norm{E}/\Gap$, with the denominator the gap
+in the \emph{union} of the two spectra --- which is at least $\Gap-\norm{E}$ when $\delta<\Gap/2$.
+That is Theorem~\ref{thm:riesz}(a); the derivative form (b) follows by applying it to
+$(A(t),A(t+h))$ and letting $h\to0$, and the angle form (c) by monotonicity of $\arcsin$.
+
+\emph{On the constant $\pi/2$.} The estimates in this literature are stated for the
+\emph{angle} $\arcsin\norm{\PP-\PP'}$ rather than for $\norm{\PP-\PP'}$ itself, and that is where
+$\pi/2$ lives. Albeverio and Motovilov \Cc{} prove a bound of the form
+$\arcsin\norm{\PP-\QQ}\le M(\norm{V}/\Gap)$ for $\norm{V}<\Gap/2$, and show that the two subspaces
+are guaranteed to be in the acute-angle case only for $\norm{V}<c\,\Gap$ with
+$c=0.454169\ldots<1/2$: that is, the angle reaches $\pi/2$ strictly before the stable range ends.
+This is exactly the content of Theorem~\ref{thm:riesz}(c) expressed in the literature's
+normalisation, and it is the source we attribute the angle form to. For \emph{off-diagonal}
+perturbations the angle bound sharpens to Motovilov--Selin's $\tan\Theta\le\delta/d$, which never
+reaches $\pi/2$; see Remark~\ref{rem:tan}, whose transcription of that bound is checked by gate
+\gate{g05\_tan\_theta}.
+
+We could \emph{not} verify that Kato's book states the constant $\pi/2$. The zbMATH review of the
+1966 edition (Zbl 0148.12601) summarises Chapter II as finite-dimensional analytic perturbation
+theory with perturbation series for eigenprojectors, a reduction method for semisimple
+eigenvalues, and estimates of convergence radii --- without naming a constant --- and the sections
+themselves were not available to us. The attribution to Kato is therefore dropped, not as a
+disagreement but for want of evidence; the mathematics used in \S\ref{sec:hierarchy} is
+Theorem~\ref{thm:riesz}, resting on Davis--Kahan for the finite-pair bound, on the limit for the
+derivative, and on the elementary inequality $\arcsin x\le(\pi/2)x$ for the angle.
+

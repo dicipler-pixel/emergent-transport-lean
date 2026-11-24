@@ -1,0 +1,73 @@
+\section{Totals: the capacity of a distance map is fixed by the number of bodies}\label{sec:totals}
+
+\subsection{The distance map and its shape gradient}
+
+Let $N\ge2$ point masses $m_i>0$ sit at $r_i\in\R^2$ with centre of mass at the origin and
+\emph{unit inertia} $I:=\sum_i m_i\norm{r_i}^2=1$. Write $d_{ij}:=\norm{r_i-r_j}$, $M:=\sum_i m_i$,
+and let $\ip{u}{v}_m:=\sum_i m_i\,u_i\cdot v_i$ be the mass metric on configurations. The
+\emph{shape space} is the quotient of the unit-inertia, zero-centre-of-mass configurations by
+translations (already removed), rotations and dilations; it carries the quotient Riemannian
+metric, whose gradients we write $\nabla_{\mathrm{shape}}$. Distances are understood after the
+inertia normalisation, so that $d_{ij}$ is a function on shapes.
+
+\begin{lemma}[Inertia identity]\label{lem:inertia}
+Without any centre-of-mass assumption,
+$\sum_{i<j}m_im_j\norm{r_i-r_j}^2=M\,I-\bigl|\sum_im_ir_i\bigr|^2$; at zero centre of mass and
+unit inertia, $\sum_{i<j}m_im_jd_{ij}^2=M$.
+\T\ (expand the square and complete it; the two correction sums cancel).
+\end{lemma}
+
+\begin{theorem}[Per-pair capacity]\label{thm:perpairs}
+Assume no two bodies coincide. Then
+\begin{equation}\label{eq:perpairs}
+   \norm{\nabla_{\mathrm{shape}}d_{ij}}_m^2=\frac{1}{m_i}+\frac{1}{m_j}-d_{ij}^2 .
+\end{equation}
+\T\ Proof below; independent numerical verification \V\ gate \gate{g01\_shape\_spectrum} (g),
+five configurations with unequal masses up to $N=8$, maximum residual $8.9\times10^{-16}$.
+\end{theorem}
+
+\begin{proof}
+Let $G^{ij}$ be the mass-metric gradient of $d_{ij}$ on configuration space. Its only nonzero
+particle components are $(r_i-r_j)/(m_id_{ij})$ and $-(r_i-r_j)/(m_jd_{ij})$, so
+$\norm{G^{ij}}_m^2=1/m_i+1/m_j$. Three identities follow by direct evaluation:
+$\langle G^{ij},\text{translations}\rangle_m=0$ (so $G$ is horizontal for translations),
+$\ip{G^{ij}}{\rho r}_m=d_{ij}\,e_{ij}\cdot Je_{ij}=0$ with $\rho r$ the rotation field and
+$e_{ij}=(r_i-r_j)/d_{ij}$ (rotation invariance), and $\ip{G^{ij}}{r}_m=e_{ij}\cdot(r_i-r_j)=d_{ij}$
+(Euler's identity for the $1$-homogeneous function $d_{ij}$). Since $I=1$, the dilation direction
+$r$ is a unit vector, and $H^{ij}:=G^{ij}-d_{ij}r$ is therefore horizontal and orthogonal to
+translations, rotation and dilation. On a horizontal variation the unit-inertia constraint is
+stationary, so $H^{ij}$ is the shape gradient and
+$\norm{H^{ij}}_m^2=\norm{G^{ij}}_m^2-2d_{ij}\ip{G^{ij}}{r}_m+d_{ij}^2\norm r_m^2=1/m_i+1/m_j-d_{ij}^2$,
+using $\norm r_m^2=I=1$.
+\end{proof}
+
+\begin{theorem}[Capacity sum rule]\label{thm:sumrule}
+Under the hypotheses of Theorem~\ref{thm:perpairs},
+\begin{equation}\label{eq:sumrule}
+   \sum_{i<j}\norm{\nabla_{\mathrm{shape}}d_{ij}}_m^2
+   =(N-1)\sum_i\frac1{m_i}-\sum_{i<j}d_{ij}^2 ,
+\end{equation}
+and for $N$ equal unit masses this is $N(N-1)-N=N(N-2)$.
+\T\ (sum \eqref{eq:perpairs} over the $\binom N2$ pairs; each index occurs $N-1$ times, and
+Lemma~\ref{lem:inertia} gives $\sum_{i<j}d_{ij}^2=N$). \V\ Gate \gate{g01\_shape\_spectrum} (f),
+$N=3,\dots,7$, residuals below $2\times10^{-6}$ (finite-difference floor).
+\end{theorem}
+
+\begin{corollary}[The total is configuration-free]\label{cor:total}
+For fixed masses and unit inertia the right-hand side of \eqref{eq:sumrule} does not depend on
+the configuration at all. Equivalently, the \emph{mean} squared singular value of the distance
+map over the $(2N-4)$-dimensional shape space is $N/2$ for equal unit masses, whatever the shape.
+\T
+\end{corollary}
+
+\begin{remark}[What the sum rule is and is not]\label{rem:sumrule-meaning}
+It is a conservation law, not a capacity formula: it says the total squared response of all
+pairwise distances to a shape deformation is fixed by the number of bodies, and the shape only
+decides how that total is distributed among the $\binom N2$ distances. The corpus's
+\emph{per-shape} capacity claims --- a plateau of $13$ against an aperture prediction of $12.57$,
+a cell value $8$ against $8.17$, a fitted coefficient $C_0$ absorbing a tube-counting
+normalisation --- are statements about the \emph{distribution} and therefore necessarily carry a
+fitted constant. \V/\Hh\ The conservation law is what survives without one. This is the sense in
+which the corpus's most quotable idea (``a transport can forget almost every direction and still
+retain a constant'') is true: the constant is the total, and it is combinatorial.
+\end{remark}

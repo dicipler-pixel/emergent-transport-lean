@@ -2,3 +2,11 @@
 build.log
 verification/
 __pycache__/
+.scratch/
+.skill/
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.out
+*.toc

@@ -1,0 +1,182 @@
+{
+  "assertions": [
+    {
+      "label": "(a) sum of per-pair capacities equals tr(M*M), unequal masses",
+      "ok": true,
+      "tol": 1e-09,
+      "value": 2.4424906541753444e-15
+    },
+    {
+      "label": "(b) equal masses: exactly two double points",
+      "ok": true,
+      "tol": null,
+      "value": 2
+    },
+    {
+      "label": "(b) equal masses: both sit at the equilateral shape",
+      "ok": true,
+      "tol": 1e-06,
+      "value": 2.3525204118543076e-15
+    },
+    {
+      "label": "(b) equal masses: the gap there is zero",
+      "ok": true,
+      "tol": 1e-06,
+      "value": 0.0
+    },
+    {
+      "label": "(c) m=[1.0, 1.0, 1.02]: two double points",
+      "ok": true,
+      "tol": null,
+      "value": 2
+    },
+    {
+      "label": "(c) m=[1.0, 1.0, 1.02]: gap at the equilateral shape is positive",
+      "ok": true,
+      "tol": null,
+      "value": 0.000128998966026157
+    },
+    {
+      "label": "(c) m=[1.0, 1.0, 1.02]: gap = 3 x displacement (local cone slope 3)",
+      "ok": true,
+      "tol": 0.05,
+      "value": 2.9805813896398177
+    },
+    {
+      "label": "(c) m=[1.0, 1.0, 1.1]: two double points",
+      "ok": true,
+      "tol": null,
+      "value": 2
+    },
+    {
+      "label": "(c) m=[1.0, 1.0, 1.1]: gap at the equilateral shape is positive",
+      "ok": true,
+      "tol": null,
+      "value": 0.0028409090907799014
+    },
+    {
+      "label": "(c) m=[1.0, 1.0, 1.5]: two double points",
+      "ok": true,
+      "tol": null,
+      "value": 2
+    },
+    {
+      "label": "(c) m=[1.0, 1.0, 1.5]: gap at the equilateral shape is positive",
+      "ok": true,
+      "tol": null,
+      "value": 0.04166666666667259
+    },
+    {
+      "label": "(c) m=[1.0, 1.0, 2.0]: two double points",
+      "ok": true,
+      "tol": null,
+      "value": 2
+    },
+    {
+      "label": "(c) m=[1.0, 1.0, 2.0]: gap at the equilateral shape is positive",
+      "ok": true,
+      "tol": null,
+      "value": 0.10000000000000338
+    },
+    {
+      "label": "(c) m=[1.0, 2.0, 3.0]: two double points",
+      "ok": true,
+      "tol": null,
+      "value": 2
+    },
+    {
+      "label": "(c) m=[1.0, 2.0, 3.0]: gap at the equilateral shape is positive",
+      "ok": true,
+      "tol": null,
+      "value": 0.19696969696969813
+    },
+    {
+      "label": "(d) displacement ~ (mass anisotropy)^2",
+      "ok": true,
+      "tol": 0.05,
+      "value": 1.9949154034243168
+    },
+    {
+      "label": "(d) displacement/eps^2 -> 1/9 (so the gap at the equilateral shape -> eps^2/3)",
+      "ok": true,
+      "tol": 0.002,
+      "value": 0.1096425304314419
+    },
+    {
+      "label": "(e) equal masses: the cone is isotropic",
+      "ok": true,
+      "tol": 0.001,
+      "value": [
+        18.000000062774212,
+        18.000000428979565
+      ]
+    },
+    {
+      "label": "(e) equal masses: isotropic cone of slope 3 (Hessian = 2*9)",
+      "ok": true,
+      "tol": 0.05,
+      "value": 18.00000024587689
+    },
+    {
+      "label": "(e) unequal masses: the cone at the displaced optic point is elliptic",
+      "ok": true,
+      "tol": 0.1,
+      "value": [
+        10.246211257225468,
+        13.731989056964267
+      ]
+    }
+  ],
+  "claim": "the optic points move; they are not tilted and not destroyed",
+  "gate": "g03_mass_breaking",
+  "measurements": {
+    "cone_hessian_equal": [
+      18.000000062774212,
+      18.000000428979565
+    ],
+    "cone_hessian_unequal_1_1_2": [
+      10.246211257225468,
+      13.731989056964267
+    ],
+    "displacement_rows": [
+      1.1096309060487641e-07,
+      4.4326132997429823e-07,
+      2.7593400829806214e-06,
+      1.096425304314419e-05
+    ],
+    "mass_breaking_rows": [
+      [
+        1.02,
+        2,
+        4.327979986540331e-05,
+        0.000128998966026157
+      ],
+      [
+        1.1,
+        2,
+        0.0009752787419661235,
+        0.0028409090907799014
+      ],
+      [
+        1.5,
+        2,
+        0.015398762825630241,
+        0.04166666666667259
+      ],
+      [
+        2.0,
+        2,
+        0.03896960554582307,
+        0.10000000000000338
+      ],
+      [
+        3.0,
+        2,
+        0.09103856607442852,
+        0.19696969696969813
+      ]
+    ]
+  },
+  "passed": true,
+  "source_sha256": "1c574d3a01e7f342d027f3f0a9d77832ce14bf61dae0073c1311014bb23572a6"
+}

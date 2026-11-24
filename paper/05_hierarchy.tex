@@ -1,0 +1,292 @@
+\section{The gap hierarchy: what is protected, and by what}\label{sec:hierarchy}
+
+The corpus states a ``hierarchy principle of structural persistence'': individual eigenvectors
+are fragile, projectors are stabler, global invariants are stabler still, and a transport
+should therefore be described by its projectors. Its later paper \Cc{} \cite{iqgt}, \S10.2
+(``the tip and the tail), already states the law that makes this precise: a single
+eigenvector's gap is the distance to its nearest neighbour, while the cluster projector's is
+the distance from the cluster to the rest of the spectrum, so the two are governed by
+different gaps and the subspace inherits the stability of the outer one. This section does
+not re-derive that principle. It adds the constants: which rate, in which norm, with which
+finite-pair denominator, and how much a rank-one projector gains --- nothing.
+
+\subsection{Levels 0 and 2: eigenvalues and cluster projectors}
+
+\begin{theorem}[Weyl]\label{thm:weyl}
+Let $A,A'$ be self-adjoint with eigenvalues ordered increasingly. Then for every $i$,
+$\abs{\lambda_i(A')-\lambda_i(A)}\le\norm{A'-A}$.
+\Cc\ (Weyl). The constant $1$ is sharp: $A=\operatorname{diag}(0,\gamma)$,
+$A'=A+\epsilon\,\sigma_1$ moves the eigenvalues by $\pm\epsilon$ to first order.
+\end{theorem}
+
+Eigenvalues therefore have no protection at all: any perturbation moves them, and at a crossing
+they lose their identity. Projectors are different, and the difference is the gap.
+
+\begin{theorem}[Projector stability: finite bound and its infinitesimal form]\label{thm:riesz}
+Let $A,A'$ be self-adjoint on $\C^n$, let $\shape\subset\operatorname{spec}A$ be a spectral
+cluster --- \emph{any} cluster, including one with spectrum on both sides of it --- and put
+$\Gap:=\operatorname{dist}(\shape,\operatorname{spec}A\setminus\shape)>0$,
+$\delta:=\norm{A-A'}$. Let $\PP,\PP'$ be the orthogonal projectors onto the cluster and onto the
+part of $\operatorname{spec}A'$ enclosed by a fixed contour separating $\shape$ from the rest,
+with $\delta<\Gap/2$ so that the count cannot change (Weyl). Then
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{(finite pair)} $\norm{\PP-\PP'}\le\delta/(\Gap-\delta)$\label{eq:prb}. The
+denominator is the \emph{union} gap: $\Gap-\delta\le\operatorname{dist}(\shape,
+\operatorname{spec}A'\setminus\shape')$. In particular $\norm{\PP-\PP'}\le2\delta/\Gap$ on the
+stable range, and the ratio $\norm{\PP-\PP'}/(\delta/\Gap)$ can exceed $1$: an adversarial search
+reaches $1.078$ at $\delta/\Gap=0.346$ (\V, gate \gate{g04\_projector\_constant}).
+\item \textbf{(infinitesimal)} along a $\C^1$ path $t\mapsto A(t)$ whose gap is at least $\Gap$,
+\begin{equation}\label{eq:deriv}
+   \norm{\dot\PP}\le\norm{\dot A}/\Gap ,
+\end{equation}
+and the constant $1$ is sharp: the family $A(t)=R(2t)\operatorname{diag}(1,-1)R(-2t)$ attains
+it. This is the form used everywhere below; the finite-pair bound (a) is \emph{not} the
+infinitesimal one with $\delta$ replaced by $\norm{\dot A}$.
+\item \textbf{(angle)} for $\Theta:=\arcsin\norm{\PP-\PP'}\in[0,\pi/2]$,
+$\Theta\le\arcsin\bigl(\delta/(\Gap-\delta)\bigr)$. Since $\delta/(\Gap-\delta)$ increases from
+$0$ to $1$ across the stable range, the angle bound increases from $0$ to $\pi/2$ and
+\emph{attains} $\pi/2$ at its endpoint $\delta=\Gap/2$, where the count of the cluster is about
+to change. So $\pi/2$ is the exact constant of the angle bound on the closure of the stable
+range, \emph{in the class of perturbations of arbitrary form} --- which is where it belongs, and
+not in (a) or (b). Restricting the class sharpens it; see Remark~\ref{rem:tan}. The literature
+states the estimate in this angle form: Albeverio and Motovilov \Cc{} prove
+$\arcsin\norm{\PP-\QQ}\le M(\norm{V}/\Gap)$ for $\norm{V}<\Gap/2$, and their bound is strong
+enough to \emph{ensure} the acute-angle case for $\norm{V}<c\,\Gap$ with
+$c=0.454169\ldots<1/2$. That is a sufficient condition, and it says nothing about what
+happens above $c\,\Gap$; in particular it does not assert that acuteness fails there. What
+(c) supplies is the complementary information: the bound\'s own value tends to $\pi/2$ as
+$\delta\uparrow\Gap/2$, so $\pi/2$ is the exact supremum of the angle bound over the stable
+range. We do not claim that the bound is attained at $\delta=\Gap/2$ by an actual pair, and
+an earlier draft of this paper incorrectly reported the threshold $c$ as evidence that it was.
+\end{enumerate}
+\Cc\ for (a): the Davis--Kahan $\sin\theta$ theorem in its union-gap form is imported, not
+re-proved. \T\ for (b), which follows from (a) applied to the pair $(A(t),A(t+h))$ with
+$\delta=\norm{\dot A}h$ and $\Gap-\delta\to\Gap$, divided by $h$; and for (c), which is
+monotonicity of $\arcsin$. \V\ Sharpness of (b), and the failure of the constant-$1$ form of
+(a): gate \gate{g04\_projector\_constant}.
+\end{theorem}
+
+\begin{remark}[A correction, and a correction of the correction]\label{rem:piover2}
+This paper first quoted, as \Cc, a constant $\pi/2$ for the general (two-sided) case and $1$ for
+the ordered case. Drafting the proof showed that the assertion ``$\norm{\PP-\PP'}\le
+\delta/\Gap$ with constant $1$'' is \emph{false} in the normalization used here --- a targeted
+search produces $\norm{\PP-\PP'}=0.3735$ against $\delta=0.3465$ --- because Davis--Kahan's
+denominator is the union gap $\Gap-\delta$, not $\Gap$. Both errors are recorded rather than
+replaced: the $\pi/2$ belongs to the angle bound, and the constant $1$ belongs to the
+\emph{derivative}, which is what the hierarchy table uses. Whether the finite-pair bound improves for an ordered
+cluster, and in which term, is not something we needed and do not claim.
+\end{remark}
+
+\begin{theorem}[Rank one, line-separated: the sharp off-diagonal bound]\label{thm:tan2}
+Let $A$ be self-adjoint with a simple eigenvalue $a$ and unit eigenvector $u$, and suppose every
+other eigenvalue of $A$ lies at least $d>0$ \emph{above} $a$. Let $V$ be self-adjoint and
+\emph{off-diagonal} with respect to $H=\operatorname{span}u\oplus u^\perp$, put
+$\delta:=\norm V$, and let $\nu$ be the eigenvector of $A+V$ for the eigenvalue near $a$. With
+$\Theta$ the angle between the two lines,
+\begin{equation}\label{eq:tan2}
+   \abs{\tan 2\Theta}\le\frac{2\delta}{d},
+   \qquad\text{hence}\qquad
+   \tan\Theta\le\frac{\sqrt{d^{2}+4\delta^{2}}-d}{2\delta}<\frac{\delta}{d}\quad(\delta>0).
+\end{equation}
+Both inequalities are sharp: for $A=\operatorname{diag}(a+d,a)$ and $V=\delta\sigma_1$ one has
+$\tan\Theta=\delta\big/\bigl(d/2+\sqrt{d^{2}/4+\delta^{2}}\bigr)$ and
+$\abs{\tan 2\Theta}=2\delta/d$ \emph{exactly}, for every $\delta<d/2$.
+\T\ Proof below; \V\ gate \gate{g06\_projector\_tan2} (12 assertions).
+\end{theorem}
+
+\begin{proof}
+Write $\nu=\cos\Theta\,u+\sin\Theta\,w$ with $\norm w=1$, $w\perp u$, and put
+$b:=\ip{Aw}{w}$, $\mu:=\ip{u}{Vw}=\ip{Vu}{w}$. Because $Au=au$, $Aw\perp u$, $Vu\perp u$ and
+$Vw\perp w$ (the last two by off-diagonality), the eigenvalue equation $(A+V)\nu=\lambda\nu$ has
+exactly two scalar consequences,
+\[
+   (\lambda-a)\cos\Theta=\mu\sin\Theta,\qquad
+   (\lambda-b)\sin\Theta=\mu\cos\Theta .
+\]
+Dividing the first by $\cos\Theta$ and the second by $\sin\Theta$ and subtracting,
+$b-a=\mu(\tan\Theta-\cot\Theta)=-2\mu/\tan 2\Theta$, so
+$\abs{\tan 2\Theta}=2\abs\mu/\abs{b-a}$. Now $\abs\mu=\abs{\ip{Vu}{w}}\le\norm{Vu}\le\delta$,
+and $b$, being a numerical-range point of the compression of $A$ to $u^\perp$, lies in the convex
+hull of the rest of the spectrum, every point of which exceeds $a$ by at least $d$; hence
+$b-a\ge d$. This gives \eqref{eq:tan2}'s first bound, and the second follows by solving
+$2t/(1-t^{2})\le2\delta/d$ for $t=\tan\Theta<1$.
+\end{proof}
+
+\begin{remark}[Why line separation cannot be dropped, and what the convex-hull hypothesis adds]
+\label{rem:numerical-range}
+The proof uses $b-a\ge d$, and that can fail while $\operatorname{dist}(a,\operatorname{spec}A
+\setminus\{a\})=d$ still holds: if the rest of the spectrum straddles $a$, the convex hull of the
+rest contains $a$, the compression's numerical range can put $b$ at $a$, and the bound breaks ---
+gate \gate{g06\_projector\_tan2}(d) exhibits a violation by $1.21$. So \emph{line separation} is
+the hypothesis this argument needs, and it is weaker than what the literature's convex-hull
+condition is for: that condition is what lets the argument be run for clusters of rank $k\ge2$,
+where the scalar reduction below no longer closes because $\Theta$ is an operator angle and not
+the angle of a single vector. The machinery for that case is the operator Riccati equation and
+the direct rotation: existence and uniqueness of solutions of $A_+X-XA_-=XBX-B^*$ and the
+$\tan\Theta$ theorem \Cc\ \cite{kmm1}, its $\tan 2\Theta$ generalisation \Cc\ \cite{kmm2}, and
+the perturbation theory of spectra and spectral subspaces \Cc\ \cite{kmm3}. And note that \eqref{eq:tan2} is \emph{stronger} than the
+Motovilov--Selin bound $\tan\Theta\le\delta/d$: for $\delta>0$ the right side of
+\eqref{eq:tan2} is strictly smaller, so at rank one the sharp constant is the $\tan 2\Theta$ one.
+\end{remark}
+
+\begin{remark}[The angle constant depends on the class of perturbations]\label{rem:tan}
+The bound (c) is sharp only over \emph{all} self-adjoint perturbations. If $V=A'-A$ is
+\emph{off-diagonal} with respect to $\operatorname{Ran}\PP\oplus\operatorname{Ran}\QQ$, and the
+convex hull of one spectral set misses the other, Motovilov and Selin \Cc\ prove the sharp
+a priori $\tan\Theta$ theorem
+\begin{equation}\label{eq:tan}
+   \norm{\tan\Theta}\le\frac{\delta}{d},
+   \qquad\text{equivalently}\qquad
+   \norm{\PP-\PP'}\le\sin\Bigl(\arctan\frac{\delta}{\sqrt{d^{2}+\delta^{2}}}\Bigr),
+\end{equation}
+with $d$ the distance between the two spectral sets. Since $\arctan$ is bounded, the angle then
+never reaches $\pi/2$ at any finite $\delta/d$, whereas \eqref{eq:prb}--(c) allows it at
+$\delta=\Gap/2$. The two constants are therefore sharp in different classes: $\pi/2$ for the
+unrestricted class, $\arctan$ for the off-diagonal one. At rank one with line separation
+Theorem~\ref{thm:tan2} improves the second further, to $\tan 2\Theta\le 2\delta/d$. Both are recorded here rather than one
+replacing the other, because the class is the hypothesis a reader has to check. \Cc\ for the
+right-hand side of \eqref{eq:tan} --- the statement is Motovilov--Selin's Theorem~2 and we have not
+re-derived it --- and \V\ for the transcription: gate \gate{g05\_tan\_theta} tests it over $300$
+random off-diagonal perturbations of spectra with an interval cluster (worst ratio $0.987$ against
+the bound), exhibits near-equality in the $2\times2$ model as $\delta/d\to0$ (ratio
+$0.99999999$), and shows the hypothesis is load-bearing: a perturbation with a diagonal part
+violates \eqref{eq:tan} by a factor $1.122$ at $\delta/d=0.318$. Motovilov--Selin's own sharpness
+argument is not reproduced here.
+\end{remark}
+
+\begin{remark}[What the cluster's position does buy]\label{rem:ordered}
+In Theorem~\ref{thm:riesz} the rate does not depend on where the cluster sits. What the position
+does control is the \emph{angle scale}: in the examples of this section and of gate
+\gate{g04}, a two-sided cluster at $\delta/\Gap\approx0.49$ rotates its subspace through an angle
+about a third larger than an ordered one at the same $\delta$. An experiment that can arrange the
+tracked cluster to be an end of the spectrum therefore buys a larger angular margin, not a better
+constant.
+\end{remark}
+
+\subsection{Level 1: the correction --- a rank-one projector gains nothing}
+
+\begin{theorem}[Rank one: no stability gain]\label{thm:rankone}
+Let $v(t)$ be a $\C^1$ unit vector and $P=vv^*$. Then, with $\dot v_\perp:=\dot v-\ip{v}{\dot v}v$,
+\begin{equation}\label{eq:rankone}
+   \dot P=\dot v_\perp v^*+v\,\dot v_\perp^*,\qquad
+   \norm{\dot P}_{\mathrm{op}}=\norm{\dot v_\perp},\qquad
+   \norm{\dot P}_F=\sqrt2\,\norm{\dot v_\perp}.
+\end{equation}
+Consequently a rank-one projector is \emph{not} a more stable carrier than the eigenvector it
+projects onto: in operator norm the two rates are equal, and in Frobenius norm the projector is
+worse by $\sqrt2$.
+\T\ (basis $(v,\dot v_\perp/\norm{\dot v_\perp})$, in which $\dot P$ is the block
+$\bigl(\begin{smallmatrix}0&a\\a&0\end{smallmatrix}\bigr)$ with $a=\norm{\dot v_\perp}$).
+\V\ Gate \gate{g02\_gap\_hierarchy} (a), 20 random pairs.
+\end{theorem}
+
+\begin{proof}
+Write $\dot v=cv+\dot v_\perp$ with $c=\ip{v}{\dot v}\in i\R$ (since $\norm v=1$). Then
+$\dot P=\dot vv^*+v\dot v^*=cvv^*+\dot v_\perp v^*+\bar cvv^*+v\dot v_\perp^*=\dot v_\perp v^*+v\dot v_\perp^*$
+because $c+\bar c=0$. The two summands are orthogonal in the Frobenius inner product and each has
+squared norm $\norm{\dot v_\perp}^2$, giving the Frobenius identity; on the two-dimensional space
+spanned by $v$ and $\dot v_\perp$ the operator is $\bigl(\begin{smallmatrix}0&a\\a&0\end{smallmatrix}\bigr)$,
+whose singular values are $a,a$.
+\end{proof}
+
+\begin{remark}[The correction, stated plainly]\label{rem:hierarchy-correction}
+An earlier formulation of this paper, following the corpus, asserted
+$\norm{\dot P}_F=\norm{\dot v_\perp}$. That is false by a factor $\sqrt2$; the identity holds in
+operator norm. The correction matters because it removes the only reason to prefer a rank-one
+projector: there is no gain, and in the norm most often computed there is a loss. \V\ Gate
+\gate{g02\_gap\_hierarchy} (a) measures $\sqrt2$ to $10^{-12}$, and
+\lean{FalseControls/} carries a deliberately false statement to the same effect.
+\end{remark}
+
+\subsection{The exception that proves the rule: a cluster through an exceptional point}
+
+\begin{theorem}[Exceptional point and the trivial cluster projector]\label{thm:ep}
+Let $B(t)=\bigl(\begin{smallmatrix}0&1\\t&0\end{smallmatrix}\bigr)$ for $t\in\C$. Then:
+\begin{enumerate}[label=(\roman*)]
+\item $\operatorname{spec}B(t)=\{\pm t^{1/2}\}$ for a branch of the square root; the eigenvalues
+are continuous but not differentiable at $t=0$, and their splitting is $2\abs t^{1/2}$;
+\item the unit eigenvectors are $(1,\pm t^{1/2})/\sqrt{1+\abs t}$; their distance is
+$2\abs t^{1/2}/\sqrt{1+\abs t}$, so the eigenvectors \emph{coalesce} like $\abs t^{1/2}$ while
+their derivatives diverge like $\abs t^{-1/2}$, and the condition number of the eigenvector
+matrix is exactly $\abs t^{-1/2}$;
+\item $B(t)$ is a single Jordan block only at $t=0$; for $t\neq0$ it is diagonalisable but its
+eigenbasis is arbitrarily ill-conditioned as $t\to0$;
+\item the Riesz projector onto the pair $\{\pm t^{1/2}\}$ is the identity, hence analytic, and
+its derivative vanishes.
+\end{enumerate}
+\T\ (direct computation). \V\ Gate \gate{g02\_gap\_hierarchy} (b), residuals below $10^{-9}$ for
+$\abs t$ down to $10^{-6}$.
+\end{theorem}
+
+\begin{remark}[What the exceptional point does and does not destroy]
+\label{rem:ep-scope}
+The singular behaviour at $t=0$ is in the \emph{basis}, not in the \emph{cluster}: the pair's
+projector is analytic, the pair's trace is analytic, and every quantity that depends only on the
+cluster is analytic through the degeneracy. Individual spectral projectors, eigenvectors and
+condition numbers diverge as $\abs t^{-1/2}$; that is the price of insisting on individual
+levels. So the corpus's phrase ``exceptional-point regularisation by Riesz projectors'' is
+correct, but only in this precise sense: the regularisation is available for a cluster whose
+\emph{external} gap stays open, and it regularises nothing about the individual levels inside
+the cluster. Where the coupling between the exceptional block and the rest of the spectrum is
+nonzero, the cluster projector is no longer constant, and the constant governing its derivative
+is the external gap $\Gap_{\mathrm{ext}}$; that coupled statement is \V\ for the families in
+\gate{results/swarm/D5\_m4.md} but is not proved here, and it is listed as an open problem
+(\S\ref{sec:open}, O3).
+\end{remark}
+
+\subsection{Level 3: the integers, and what they count}
+
+\begin{theorem}[Winding, and why it is not a crossing count]\label{thm:winding}
+Let $t\mapsto H(t)=a(t)\sigma_1+b(t)\sigma_2+c(t)\sigma_3$ be continuous on the circle
+$t\in S^1$.
+\begin{enumerate}[label=(\alph*)]
+\item If $a+ib$ never vanishes, its winding number $w\in\mathbb{Z}$ is defined and is invariant
+under every continuous deformation keeping $a+ib\neq0$.
+\item The winding is \emph{not} the spectral flow. $H(t)=\cos t\,\sigma_1+\sin t\,\sigma_2$ has
+$w=1$ and no eigenvalue crossing any level, so its spectral flow is $0$; and $H=\sigma_3$ has
+$a+ib\equiv0$, so its winding is undefined although its spectrum is gapped at every level
+$0<\mu<1$.
+\item If $c\equiv0$, the lower band's Berry phase $\gamma_-$ satisfies
+$\exp(i\gamma_-)=(-1)^w$.
+\end{enumerate}
+\T\ (a) is the argument principle; (c) is the standard two-level computation
+$\gamma_-=\pi$ for $w=1$, verified independently for a real and for a complex Hermitian loop.
+\V\ Gate \gate{g02\_gap\_hierarchy} (c) and \gate{results/swarm/check\_D6\_m8.py}.
+\end{theorem}
+
+\begin{remark}[The corrected currency]\label{rem:currency}
+An earlier formulation said ``spectral flow equals winding''. Theorem~\ref{thm:winding} shows
+that neither direction survives as stated. What survives is the useful half: when a two-band
+family never degenerates on the loop, the winding is an integer, it is a homotopy invariant of
+the gapped family, and it obstructs a globally continuous gapped trivialisation. That is what a
+``topological currency'' is, and it is a homotopy class rather than a count of crossings.
+\end{remark}
+
+\subsection{The hierarchy, stated as a theorem's worth of content}
+
+\begin{center}
+\begin{tabular}{@{}p{0.6cm}p{3.4cm}p{3.4cm}p{4.2cm}@{}}
+\toprule
+level & invariant & protected by & failure mode \\
+\midrule
+0 & eigenvalue & nothing & Weyl: moves by $\norm{\dot A}$; crossing destroys the label \\
+1 & eigenvector, or a rank-one projector & the internal gap $\Gap_{\mathrm{int}}$ &
+\emph{no gain} (\S\ref{sec:hierarchy}.2): rate $\norm{\dot A}/\Gap_{\mathrm{int}}$, $\sqrt2$ worse in Frobenius; at an EP diverges like $\abs t^{-1/2}$ \\
+2 & cluster projector & the external gap $\Gap_{\mathrm{ext}}$ &
+analytic through interior degeneracies; rate $\norm{\dot A}/\Gap_{\mathrm{ext}}$, constant $1$ in the infinitesimal form \\
+3 & trace, rank, winding, spectral flow & the external gap, and integrality & locally constant; jumps only in integers \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[The principle, corrected]\label{rem:principle}
+\emph{A transport invariant is stable exactly to the extent that the gap protecting it is open,
+and the relevant gap is the one across the boundary of the cluster that defines the invariant ---
+never the gap inside it.} The principle is the corpus's own (\cite{iqgt}, \S10.2). What is added
+here is the quantitative row: passing from an eigenvector to its \emph{rank-one} projector buys
+nothing --- the operator-norm rate is identical and the Frobenius rate is worse by $\sqrt2$ ---
+because they are the same object; passing from a level to the \emph{cluster} containing it buys
+the external gap, whose protection Theorem~\ref{thm:riesz} makes explicit. An experiment that wants stability should
+therefore enlarge its cluster until the gap it controls is the outer one, and a theory that wants
+to claim stability should name that gap.
+\end{remark}
